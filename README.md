@@ -27,6 +27,7 @@ For the `embed` command, please add at least 7 lines to your message, as follows
 =embed Title of embed
 Title URL
 Description
+Color
 Author
 Author URL
 Author Image Link
@@ -55,7 +56,7 @@ Inline is false for at least one field
 
 Masked URLS can be done with `[Mask](URL)`, such as `[Google](https://google.com)`. This is only possible in embed or field descriptions.
 
-If you leave a line empty, it will not be processed.
+If you leave a line empty, it will not be processed. If you leave the color empty, it will be considered as transparent.
 
 To add a new line to embed or field descriptions, type `{{{newline}}}`.
 
