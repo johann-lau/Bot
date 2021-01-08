@@ -1,35 +1,77 @@
 import discord
 from discord.ext import commands
 import random as ra
-import time
+import time as tm
 from datetime import datetime
+from discord_webhook import DiscordWebhook
+from discord.ext.commands import MemberConverter
 
 client = discord.Client()
-bot = commands.Bot(command_prefix='=')
+bot = commands.Bot(command_prefix=["=","!"])
 bot.remove_command('help')
+autodel=None
+
+"""@bot.event
+async def on_message(message):
+  if autodel!=None and not(message.content.startswith("=")):
+    tm.sleep(autodel)
+    await message.channel.purge(limit=1)
+    await bot.process_commands(message)
+  return"""
 
 @bot.command()
-async def help(ctx):
-  ti="Tunnelers' Bot Help"
-  desc="""**=admins**
+async def purge(ctx,num):
+  await ctx.channel.purge(limit=1)
+  num=int(num)
+  await ctx.channel.purge(limit=num)
+  
+"""@bot.command()
+async def autodelete(ctx,num):
+  isnum=num.isnumeric()
+  if isnum:
+    autodel=int(num)
+    await ctx.send("Autodelete has been set to "+num+" seconds.")
+  else:
+    autodel=None
+    await ctx.send("Autodelete has been disabled.")"""
+
+@bot.command()
+async def help(ctx,cat):
+  cat=cat.lower()
+  ti="Commands: Tunnelers' Abyss"
+  if cat=="ta":
+    desc="""
+  **admins**
   Show admins of the server.
   **Alias:** `=administrators`
   
-  **=mods**
+  **mods**
   Show mods of the server.
   **Alias:** `=moderators`
   
-  **=random [lower] [upper]**
-  Pick a pseudo-random number between the lower and upper numbers. If the provided numbers are not integers, they will be rounded off.
-  
-  **=spam [times to spam] [message to spam]**
-  Spam the provided message.
-  
-  **=gsmrl**
+  **gsmrl**
   Shows information about GSMRL.
   
-  **=tttl**
+  **tttl**
   Shows information about TTTL.
+  """
+  elif cat=="admins":
+    ti="Admins"
+    desc="""**=admins**
+  Show admins of the server.
+  **Alias:** `=administrators`"""
+  elif cat=="admins":
+    ti="Admins"
+    desc="""**=admins**
+  Show admins of the server.
+  **Alias:** `=administrators`"""
+  else:
+    ti="Tunnelers' Bot Help"
+    desc="""
+  Prefix: =
+  
+  Commands available:
+  `admins` `emoji` `gsmrl` `kick` `mods` `random` `reverse` `role` `spam` `spoiler` `time` `timer` `tttl`
   """
   embed=discord.Embed(title=ti, description=desc, color=0x0061ff)
   await ctx.send(embed=embed)
@@ -37,17 +79,26 @@ async def help(ctx):
 @bot.command()
 async def time(ctx,timezone):
   now = datetime.now()
-  current = now.strftime("%H:%M:%S")
+  h = now.strftime("%H")
+  h = int(h)+int(timezone)-8
+  if h>=24:
+    h=h-24
+  current = "Time in UTC " +timezone + " is `" + now.strftime(str(h)+" : %M : %S") + "`"
   await ctx.send(current)
 
 @bot.command()
-async def spoiler(ctx,text):
+async def spoiler(ctx,*,text):
   text="||||".join(text)
   text="||"+text+"||"
   await ctx.send(text)
 
 @bot.command()
-async def emoji(ctx,newsec):
+async def reverse(ctx,*,text):
+  text = text[::-1]
+  await ctx.send(text)
+
+@bot.command()
+async def emoji(ctx,*,newsec):
   newsec=newsec.replace(" ","   ")
   newsec=newsec.lower()
   newsec=newsec.replace("1",":one: ")
@@ -144,7 +195,7 @@ async def timer(ctx,seconds):
   message=await ctx.send(desc)
   seconds=str(int(seconds)-1)
   while seconds!="0":
-    time.sleep(0.8)
+    await tm.sleep(0.8)
     newsec=seconds
     newsec=newsec.replace("1",":one: ")
     newsec=newsec.replace("2",":two: ")
@@ -163,7 +214,18 @@ async def timer(ctx,seconds):
     await message.edit(content=desc)
     seconds=str(int(seconds)-1)
   await ctx.send("Countdown complete!")
+
+
+@bot.command()
+async def role(ctx, member : discord.Member, role : discord.Role):
     
+    roles=member.roles
+    if roles.count(role)==1:
+      await member.remove_roles(role)
+      await ctx.send("Removed "+str(role)+" from "+str(member)+".")
+    else:
+      await member.add_roles(role)
+      await ctx.send("Added "+str(role)+" to "+str(member)+".")
 
 @bot.command()
 async def admins(ctx):
@@ -197,7 +259,45 @@ async def random(ctx,lower,upper):
   await ctx.send(embed=embed)
 
 @bot.command()
-async def spam(ctx,message,times):
+async def avatar(ctx,user: discord.Member=None):
+  ti="Avatar"
+  if user==None:
+    user=ctx.author
+  desc=f"Avatar of {user.mention}"
+  embed=discord.Embed(title=ti,color=0x0061ff, description=desc)
+  embed.set_image(url=user.avatar_url)
+  await ctx.send(embed=embed)
+
+@bot.command()
+async def user(ctx,user: discord.Member=None):
+  ti="Userinfo"
+  if user==None:
+    user=ctx.author
+  bot=user.bot
+  if bot==True:
+    desc=f"{user.mention} (bot) "+user.name+"#"+user.descriminator
+  else:
+    desc=f"{user.mention} (human) "+user.name+"#"+user.discriminator
+  embed=discord.Embed(title=ti,color=0x0061ff, description=desc)
+  embed.set_image(url=user.avatar_url)
+  f1v=user.created_at.strftime("%d %b, %Y (%a) %H:%M:%S")
+  f2v=user.joined_at.strftime("%d %b, %Y (%a) %H:%M:%S")
+  f3v=user.permissions_in(ctx.channel)
+  f4v=""
+  allroles=user.roles
+  for count in allroles:
+    f4v=f4v+count.mention
+  embed.add_field(name="Registered", value=f1v, inline=True)
+  embed.add_field(name="Joined", value=f2v, inline=True)
+  embed.add_field(name="Permissions", value=f3v, inline=False)
+  embed.add_field(name="Roles", value=f4v, inline=True)
+  """embed.add_field(name="Nitro", value=f5v, inline=True)
+  embed.add_field(name="User", value=f6v, inline=True)
+  embed.add_field(name="", value=f7v, inline=True)"""
+  await ctx.send(embed=embed)
+
+@bot.command()
+async def spam(ctx,times,*,message):
   await ctx.channel.purge(limit=1)
   for count in range(0,int(times)):
     await ctx.send(message)
@@ -264,7 +364,7 @@ By April, and besieged by a mountain of passenger complaints, the decision was t
 
   f7v="""The newest line in the Tunnelers' Abyss is the S8, whose grand opening was the 28th September, 2020.Basically Trains in Tunneler's Abyss(TA) is managed by TTTL (Tunneler's Train Transist Limited) project but, in Grapeyard Superb trains are managed by Grapeyard Superb Metro Train Limited(GSMRL) project. These projects are under taken by sivarajan and Hume2. Railway is essential part when it comes to traveling around TA."""
   embed=discord.Embed(title=ti,color=0x0061ff, url="https://h2mm.gitlab.io/web/rail.html", description=desc)
-  embed.add_field(name="⠀", value=f1v, inline=False)
+  embed.add_field(name="Story", value=f1v, inline=False)
   embed.add_field(name="⠀", value=f2v, inline=False)
   embed.add_field(name="⠀", value=f3v, inline=False)
   embed.add_field(name="⠀", value=f4v, inline=False)
