@@ -21,7 +21,7 @@
 **tttl** View information about TTTL.
 
 ### Embed Message help
-For the `embed` command, please add at least 7 lines to your message, as follows.
+For the `embed` command, please add 8 lines to your message, as follows.
 
 ```
 =embed Title of embed
