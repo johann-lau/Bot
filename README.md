@@ -35,9 +35,9 @@ Notice "Field Inline". If you set it to `true`, `y`, `yes` or `1`, it will be Tr
 
 Inline is true for both fields
 
-![IT](https://u.cubeupload.com/Johann/Screenshot20210108at.png =250x)
+![IT](https://u.cubeupload.com/Johann/Screenshot20210108at.png)
 
 
 Inline is false for at least one field
 
-![IF](https://u.cubeupload.com/Johann/b16Screenshot20210108at.png =250x)
+![IF](https://u.cubeupload.com/Johann/b16Screenshot20210108at.png)
