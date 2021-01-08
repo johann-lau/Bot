@@ -41,3 +41,14 @@ Inline is true for both fields
 Inline is false for at least one field
 
 ![IF](https://u.cubeupload.com/Johann/b16Screenshot20210108at.png)
+
+
+###### Notes
+There are certain character limits:
+
+- Embed titles are limited to 256 characters
+- Embed descriptions are limited to 2048 characters
+- There can be up to 25 fields
+- A field's name is limited to 256 characters and its description to 1024 characters
+- The footer text is limited to 2048 characters
+- The author name is limited to 256 characters
