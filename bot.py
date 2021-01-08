@@ -4,12 +4,15 @@ import random as ra
 import time as tm
 from datetime import datetime
 from discord_webhook import DiscordWebhook
-from discord.ext.commands import MemberConverter
-
+from discord.ext.commands import *
+import json
+import os
+import tracemalloc
+tracemalloc.start()
 client = discord.Client()
-bot = commands.Bot(command_prefix=["=","!"])
+bot = commands.Bot(command_prefix=commands.when_mentioned_or("=" or "!"))
 bot.remove_command('help')
-autodel=None
+typer=0
 
 """@bot.event
 async def on_message(message):
@@ -20,11 +23,28 @@ async def on_message(message):
   return"""
 
 @bot.command()
+async def type(ctx):
+  global typing
+  if typer==0:
+    channel=ctx.channel
+    await ctx.send("Started typing")
+    async with channel.typing():
+      typer=1
+      var=0
+  else:
+    typing=0
+    await ctx.send("Stopped typing")
+
+@bot.command()
+async def nothing(ctx):
+  async for user in reaction.users():
+    await channel.send('{0} has reacted with {1.emoji}!'.format(user, reaction))
+
+@bot.command()
 async def purge(ctx,num):
   await ctx.channel.purge(limit=1)
   num=int(num)
   await ctx.channel.purge(limit=num)
-  
 """@bot.command()
 async def autodelete(ctx,num):
   isnum=num.isnumeric()
@@ -91,6 +111,17 @@ async def spoiler(ctx,*,text):
   text="||||".join(text)
   text="||"+text+"||"
   await ctx.send(text)
+
+@bot.command()
+async def get_prefix(bot, message):
+    extras = await prefixes_for(message.guild) # returns a list
+    return commands.when_mentioned_or(*extras)(bot, message)
+
+@bot.command()
+async def emojis(ctx):
+  guildguild= client.get_guild(796624935165886496)
+  desc = await guildguild.get_emojis
+  await ctx.send(desc)
 
 @bot.command()
 async def reverse(ctx,*,text):
@@ -195,7 +226,7 @@ async def timer(ctx,seconds):
   message=await ctx.send(desc)
   seconds=str(int(seconds)-1)
   while seconds!="0":
-    await tm.sleep(0.8)
+    tm.sleep(0.8)
     newsec=seconds
     newsec=newsec.replace("1",":one: ")
     newsec=newsec.replace("2",":two: ")
@@ -270,7 +301,7 @@ async def avatar(ctx,user: discord.Member=None):
 
 @bot.command()
 async def user(ctx,user: discord.Member=None):
-  ti="Userinfo"
+  ti="User Information"
   if user==None:
     user=ctx.author
   bot=user.bot
@@ -278,22 +309,99 @@ async def user(ctx,user: discord.Member=None):
     desc=f"{user.mention} (bot) "+user.name+"#"+user.descriminator
   else:
     desc=f"{user.mention} (human) "+user.name+"#"+user.discriminator
-  embed=discord.Embed(title=ti,color=0x0061ff, description=desc)
-  embed.set_image(url=user.avatar_url)
+    embed=discord.Embed(title=ti,color=user.color, description=desc)
+  embed.set_thumbnail(url=user.avatar_url)
   f1v=user.created_at.strftime("%d %b, %Y (%a) %H:%M:%S")
   f2v=user.joined_at.strftime("%d %b, %Y (%a) %H:%M:%S")
-  f3v=user.permissions_in(ctx.channel)
-  f4v=""
   allroles=user.roles
-  for count in allroles:
-    f4v=f4v+count.mention
+  f3v="⠀⠀"
+  if user.permissions_in(ctx.channel).administrator:
+    f3v=f3v+"Admin, "
+  if user.permissions_in(ctx.channel).manage_guild:
+    f3v=f3v+"Manage Server, "
+  if user.permissions_in(ctx.channel).manage_roles:
+    f3v=f3v+"Manage Roles, "
+  if user.permissions_in(ctx.channel).administrator:
+    f3v=f3v+"Manage Permissions, "
+  if user.permissions_in(ctx.channel).view_audit_log:
+    f3v=f3v+"View Audit Logs, "
+  if user.permissions_in(ctx.channel).view_guild_insights:
+    f3v=f3v+"View Server Insights, "
+  if user.permissions_in(ctx.channel).kick_members:
+    f3v=f3v+"Kick Members, "
+  if user.permissions_in(ctx.channel).ban_members:
+    f3v=f3v+"Ban Members, "
+  if user.permissions_in(ctx.channel).manage_nicknames:
+    f3v=f3v+"Manage Nicknames, "
+  if user.permissions_in(ctx.channel).manage_webhooks:
+    f3v=f3v+"Manage Webhooks, "
+  if user.permissions_in(ctx.channel).manage_emojis:
+    f3v=f3v+"Manage Emojis, "
+  if user.permissions_in(ctx.channel).manage_nicknames:
+    f3v=f3v+"Change Nickname, "
+  if user.permissions_in(ctx.channel).mention_everyone:
+    f3v=f3v+"Mention Everyone, "
+  if user.permissions_in(ctx.channel).create_instant_invite:
+    f3v=f3v+"Create Invite, "
+  f3v=f3v[:-2]
+  f3vb="⠀"
+  if user.permissions_in(ctx.channel).view_channel:
+    f3vb=f3vb+"View Channel, "
+  if user.permissions_in(ctx.channel).read_messages:
+    f3vb=f3vb+"Read Messages, "
+  if user.permissions_in(ctx.channel).read_message_history:
+    f3vb=f3vb+"Read Message History, "
+  if user.permissions_in(ctx.channel).send_messages:
+    f3vb=f3vb+"Send Messages, "
+  if user.permissions_in(ctx.channel).send_tts_messages:
+    f3vb=f3vb+"Send TTS Messages, "
+  if user.permissions_in(ctx.channel).add_reactions:
+    f3vb=f3vb+"Add Reactions, "
+  if user.permissions_in(ctx.channel).external_emojis:
+    f3vb=f3vb+"External Emojis, "
+  if user.permissions_in(ctx.channel).attach_files:
+    f3vb=f3vb+"Attach Files, "
+  if user.permissions_in(ctx.channel).embed_links:
+    f3vb=f3vb+"Embed Links, "
+  f3vb=f3vb[:-2]
+  """f3vc=""
+  if user.permissions_in(ctx.channel).connect:
+    f3vc=f3vc+"Connect, "
+  if user.permissions_in(ctx.channel).speak:
+    f3vc=f3vc+"Speak, "
+  if user.permissions_in(ctx.channel).stream:
+    f3vc=f3vc+"Video, "
+  if user.permissions_in(ctx.channel).use_voice_activation:
+    f3vc=f3vc+"Voice Activity, "
+  if user.permissions_in(ctx.channel).priority_speaker:
+    f3vc=f3vc+"Priority Speaker, "
+  if user.permissions_in(ctx.channel).mute_members:
+    f3vc=f3vc+"Mute Members, "
+  if user.permissions_in(ctx.channel).deafen_members:
+    f3vc=f3vc+"Deafen Members, "
+  f3vc=f3vc[:-2]"""
+  f4v=""
+  if len(allroles)>1:
+    for count in allroles:
+      if count.position!=0:
+        f4v=f4v+count.mention+"⠀"
+  else:
+    f4v="No roles"
+  """prof=profile(user)
+  if prof.nitro:
+    f5v="Nitro since "
+    f5v=f5v+prof.premium_since.strftime("%d %b, %Y (%a) %H:%M:%S")
+  else:
+    f5v="No Nitro subscriptions"""
   embed.add_field(name="Registered", value=f1v, inline=True)
   embed.add_field(name="Joined", value=f2v, inline=True)
-  embed.add_field(name="Permissions", value=f3v, inline=False)
+  embed.add_field(name="Server Permissions", value=f3v, inline=False)
+  embed.add_field(name="Channel Permissions", value=f3vb, inline=False)
+  #embed.add_field(name="Voice Permissions", value=f3vc, inline=False)
   embed.add_field(name="Roles", value=f4v, inline=True)
-  """embed.add_field(name="Nitro", value=f5v, inline=True)
-  embed.add_field(name="User", value=f6v, inline=True)
-  embed.add_field(name="", value=f7v, inline=True)"""
+  #embed.add_field(name="Nitro", value=f5v, inline=True)
+  #embed.add_field(name="User", value=f6v, inline=True)
+  #embed.add_field(name="", value=f7v, inline=True)
   await ctx.send(embed=embed)
 
 @bot.command()
@@ -302,7 +410,6 @@ async def spam(ctx,times,*,message):
   for count in range(0,int(times)):
     await ctx.send(message)
 
-@commands.has_permissions(kick_members=True)
 @bot.command()
 async def kick(ctx, user: discord.Member, *, reason="No reason provided"):
         await user.kick(reason=reason)
@@ -374,4 +481,11 @@ By April, and besieged by a mountain of passenger complaints, the decision was t
   embed.set_image(url="https://h2mm.gitlab.io/web/screenshots/trainoffice.png")
   await ctx.send(embed=embed)
 
+
+@bot.event
+async def on_ready():
+    activity = discord.Game(name="with TA members", type=3)
+    await bot.change_presence(status=discord.Status.idle, activity=activity)
+    print("Bot is ready!")
+    
 bot.run('TOKEN IS ENCLOSED')
