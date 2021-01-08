@@ -43,7 +43,7 @@ Inline is false for at least one field
 ![IF](https://u.cubeupload.com/Johann/b16Screenshot20210108at.png)
 
 
-##### Notes
+#### Notes
 
 Masked URLS can be done with `[Mask](URL)`, such as `[Google](https://google.com)`. This is only possible in embed or field descriptions.
 
@@ -51,7 +51,7 @@ If you leave a line empty, it will not be processed.
 
 To add a new line to embed or field descriptions, type `{{{newline}}}`.
 
-##### Limits
+#### Limits
 There are certain character limits:
 
 - Embed titles are limited to 256 characters
