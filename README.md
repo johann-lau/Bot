@@ -9,7 +9,7 @@
 
 **reverse {Text}** Reverses the text.
 
-**embed** Gives a custom embed. Please check [here]().
+**embed** Gives a custom embed. Please check [here](https://github.com/johann-lau/Bot/blob/main/README.md#embed-message-help).
 ### Tunnelers' Abyss
 
-### <a name="Embed"></a>Embed Message help
+### Embed Message help
