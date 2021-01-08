@@ -12,6 +12,14 @@
 **embed** Gives a custom embed. Please check [here](https://github.com/johann-lau/Bot/blob/main/README.md#embed-message-help).
 ### Tunnelers' Abyss
 
+**admins** Lists all admins of the server.
+
+**mods** Lists all moderators of the server.
+
+**gsmrl** View information about GSMRL.
+
+**tttl** View information about TTTL.
+
 ### Embed Message help
 For the `embed` command, please add at least 7 lines to your message, as follows.
 
