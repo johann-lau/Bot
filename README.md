@@ -9,6 +9,8 @@
 
 **reverse {Text}** Reverses the text.
 
+**color {R G B} or {hex} or {decimal}** Searches for information about the color. Alias: `colour`
+
 **embed** Gives a custom embed. Please check [here](https://github.com/johann-lau/Bot/blob/main/README.md#embed-message-help).
 ### Tunnelers' Abyss
 
