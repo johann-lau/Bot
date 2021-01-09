@@ -11,7 +11,12 @@
 
 **color {R G B} or {hex} or {decimal}** Searches for information about the color. Alias: `colour`
 
+**pretend {User} {Text}** Pretends as the user and talk.
+
+**spam {Times} {Text}** Spams the text for a number of times.
+
 **embed** Gives a custom embed. Please check [here](https://github.com/johann-lau/Bot/blob/main/README.md#embed-message-help).
+
 ### Tunnelers' Abyss
 
 **admins** Lists all admins of the server.
@@ -21,6 +26,12 @@
 **gsmrl** View information about GSMRL.
 
 **tttl** View information about TTTL.
+
+### Information Commands
+
+**time {timezone}** Shows the time in the timezone. Timezone can be a value between -14 and 14.
+
+**timer {seconds} {optional text}** Counts the specified number of seconds.
 
 ### Embed Message help
 For the `embed` command, please add 8 lines to your message, as follows.
