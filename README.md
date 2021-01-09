@@ -45,6 +45,8 @@ Author
 Author URL
 Author Image Link
 Footer
+Thumbnail Image Link
+Image Link
 ```
 For the color, please input a decimal value from 0 to 16777215. Not sure which color? Use our `=color R G B` or `=color #hex` command to fetch the decimal value.
 
