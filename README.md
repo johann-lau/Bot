@@ -33,6 +33,7 @@ Author URL
 Author Image Link
 Footer
 ```
+For the color, please input a decimal value from 0 to 16777215. Not sure which color? Use our `=color R G B` or `=color #hex` command to fetch the decimal value.
 
 You might want to add fields to your embed. For every field, insert 3 lines to the bottom of your command.
 ```
