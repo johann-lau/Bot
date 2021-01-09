@@ -5,10 +5,17 @@ import time as tm
 from datetime import datetime
 from discord_webhook import DiscordWebhook
 from discord.ext.commands import *
+from discord import Webhook, AsyncWebhookAdapter, RequestsWebhookAdapter
 import json
 import os
-import tracemalloc
-tracemalloc.start()
+import aiohttp
+import requests
+from bs4 import BeautifulSoup
+from PIL import Image
+from urllib.request import urlopen
+import re
+hexstring_pattern = re.compile(r'#?([0-9A-F]{2})([0-9A-F]{2})([0-9A-F]{2})', re.IGNORECASE)
+
 client = discord.Client()
 bot = commands.Bot(command_prefix=commands.when_mentioned_or("=" or "!"))
 bot.remove_command('help')
@@ -23,8 +30,16 @@ async def on_message(message):
   return"""
 
 @bot.command()
+async def pretend(ctx, member : discord.Member, *, message):
+  await ctx.channel.purge(limit=1)
+  async with aiohttp.ClientSession() as session:
+    #webhook = Webhook.from_url('https://discord.com/api/webhooks/797029335424434186/op96Pi7p-F4mGNWPUbMW5iKwUiQ1tPU_1p-9CkcVpzfrXLYhRMK6E--C0s1rG76BtX9m', adapter=AsyncWebhookAdapter(session))
+    webhook = Webhook.partial(797029335424434186, 'op96Pi7p-F4mGNWPUbMW5iKwUiQ1tPU_1p-9CkcVpzfrXLYhRMK6E--C0s1rG76BtX9m', adapter=RequestsWebhookAdapter())
+  await webhook.send(message, username=member.name, avatar_url=member.avatar_url)
+
+@bot.command()
 async def type(ctx):
-  global typing
+  global typer
   if typer==0:
     channel=ctx.channel
     await ctx.send("Started typing")
@@ -32,13 +47,39 @@ async def type(ctx):
       typer=1
       var=0
   else:
-    typing=0
+    typer=0
     await ctx.send("Stopped typing")
 
 @bot.command()
-async def nothing(ctx):
-  async for user in reaction.users():
-    await channel.send('{0} has reacted with {1.emoji}!'.format(user, reaction))
+async def embed(ctx,*,text):
+  textlist=text.splitlines()
+  embed=discord.Embed(title=textlist[0], url=textlist[1], description=textlist[2].replace("{{{newline}}}","\n"), color=int(textlist[3]))
+  textlist.remove(textlist[0])
+  textlist.remove(textlist[0])
+  textlist.remove(textlist[0])
+  textlist.remove(textlist[0])
+  embed.set_author(name=textlist[0], url=textlist[1], icon_url=textlist[2])
+  textlist.remove(textlist[0])
+  textlist.remove(textlist[0])
+  textlist.remove(textlist[0])
+  embed.set_footer(text=textlist[0])
+  textlist.remove(textlist[0])
+  for count in range(0,len(textlist)//3):
+    if textlist[2].lower()=="y" or textlist[2].lower()=="yes" or textlist[2].lower()=="true" or textlist[2].lower()=="1":
+      inl=True
+    else:
+      inl=False
+    embed.add_field(name=textlist[0], value=textlist[1].replace("{{{newline}}}","\n"), inline=inl)
+    textlist.remove(textlist[0])
+    textlist.remove(textlist[0])
+    textlist.remove(textlist[0])
+  await ctx.send(embed=embed)
+  
+
+@bot.command()
+async def insert(ctx,emoji,*,text):
+  text=text.replace(" "," "+emoji+" ")
+  await ctx.send(text)
 
 @bot.command()
 async def purge(ctx,num):
@@ -56,8 +97,9 @@ async def autodelete(ctx,num):
     await ctx.send("Autodelete has been disabled.")"""
 
 @bot.command()
-async def help(ctx,cat):
-  cat=cat.lower()
+async def help(ctx,cat=None):
+  if cat!=None:
+    cat=cat.lower()
   ti="Commands: Tunnelers' Abyss"
   if cat=="ta":
     desc="""
@@ -97,14 +139,98 @@ async def help(ctx,cat):
   await ctx.send(embed=embed)
 
 @bot.command()
-async def time(ctx,timezone):
-  now = datetime.now()
-  h = now.strftime("%H")
-  h = int(h)+int(timezone)-8
-  if h>=24:
-    h=h-24
-  current = "Time in UTC " +timezone + " is `" + now.strftime(str(h)+" : %M : %S") + "`"
-  await ctx.send(current)
+async def color(ctx,arg1,arg2=None,arg3=None):
+  arg1=arg1.lower()
+  if arg2==None and arg3==None:
+    arg1=arg1.lstrip("#")
+    if len(arg1)==6 and (arg1.count("1")+arg1.count("2")+arg1.count("3")+arg1.count("4")+arg1.count("5")+arg1.count("6")+arg1.count("7")+arg1.count("8")+arg1.count("9")+arg1.count("a")+arg1.count("b")+arg1.count("c")+arg1.count("d")+arg1.count("e")+arg1.count("f")+arg1.count("0")==6):
+      hexc=(str(arg1))
+      desc="Hex: #"+hexc
+      deci=int(hexc, 16)
+      rgb=tuple(int(hexc[i:i+2], 16) for i in (0, 2, 4))
+      rgb=str(rgb[0])+","+str(rgb[1])+","+str(rgb[2])
+    elif int(arg1)<=16777216:
+      hexc=str(hex(int(arg1))).lstrip("0x")
+      desc="Decimal: "+arg1
+      rgb=tuple(int(hexc[i:i+2], 16) for i in (0, 2, 4))
+      rgb=str(rgb[0])+","+str(rgb[1])+","+str(rgb[2])
+      deci=int(arg1)
+    else:
+      await ctx.send("Please specify a correct color value.")
+  elif int(arg1)>=0 and int(arg1)<=256 and int(arg2)>=0 and int(arg2)<=256 and int(arg3)>=0 and int(arg3)<=256:
+    hexc='#%02x%02x%02x' % (int(arg1), int(arg2), int(arg3))
+    desc="RGB: "+arg1+","+arg2+","+arg3
+    rgb=arg1+","+arg2+","+arg3
+    hexc=(str(hexc))[1:]
+    deci=int(hexc, 16)
+  else:
+    await ctx.send("Please specify a correct color value.")
+    return
+  ti="Color information"
+  embed=discord.Embed(title=ti, description=desc, color=deci)
+  embed.add_field(name="RGB", value=rgb, inline=True)
+  embed.add_field(name="Hex Code", value="#"+hexc, inline=True)
+  embed.add_field(name="Decimal Value", value=deci, inline=True)
+  embed.set_image(url="https://htmlcolors.com/color-image/"+hexc+".png")
+  await ctx.send(embed=embed)
+  
+@bot.command()
+async def colour(ctx, arg1, arg2=None, arg3=None):
+    args = arg1, arg2, arg3
+    match = hexstring_pattern.fullmatch(arg1)
+    if match:
+        desc = f'Hex: {arg1}'
+        r, g, b = (int(val, 16) for val in match.groups())
+
+    elif all(arg and arg.isdigit() and 0 <= int(arg) < 256 for arg in args):
+        desc = f'RGB: {arg1},{arg2},{arg3}'
+        r, g, b = map(int, args)
+
+    elif arg1.isdigit() and 0 <= int(arg1) < 2 ** 24:
+        # note that the first pattern can match some entries of this type, and and cause a bug.
+        # but the bug is really in the input specification, not my interpretation of your code
+        desc = f'Decimal: {arg1}'
+        n = int(arg1)
+        r, g, b = n >> 16, (n >> 8) & 255, n & 255
+
+    else:
+        await ctx.send('Please specify a correct colour value.')
+        return
+
+    deci = (r << 16) + (g << 8) + b
+    hex_ = f'{deci:02x}'.upper()
+
+    embed = discord.Embed(title='Colour information', description=desc, color=deci)
+    embed.add_field(name='RGB', value=f'{r},{g},{b}', inline=True)
+    embed.add_field(name='Hex Code', value=f'#{hex_}', inline=True)
+    embed.add_field(name='Decimal Value', value=deci, inline=True)
+    embed.set_image(url=f'https://htmlcolors.com/color-image/{hex_}.png')
+    await ctx.send(embed=embed)
+
+
+@bot.command()
+async def time(ctx,timezoneinput="0"):
+  timezone=float(timezoneinput)
+  if timezone>-15 and timezone<15:
+    now = datetime.now()
+    h = now.strftime("%H")
+    m = now.strftime("%M")
+    h = float(h)+timezone//1-8
+    m = timezone%1*60
+    if h>=24:
+      h=h-24
+    if h<0:
+      h=h+24
+    hdis=str(int(h))
+    if int(h)<10:
+      hdis="0"+hdis
+    mdis=str(int(m))
+    if int(m)<10:
+      mdis="0"+mdis
+    current = "Time in UTC " + timezoneinput + " is `" + now.strftime(hdis+" : "+mdis+" : %S") + "`"
+    await ctx.send(current)
+  else:
+    await ctx.send("Invalid timezone. Please try again.")
 
 @bot.command()
 async def spoiler(ctx,*,text):
@@ -113,14 +239,15 @@ async def spoiler(ctx,*,text):
   await ctx.send(text)
 
 @bot.command()
-async def get_prefix(bot, message):
+async def getprefix(bot, message):
     extras = await prefixes_for(message.guild) # returns a list
     return commands.when_mentioned_or(*extras)(bot, message)
 
 @bot.command()
-async def emojis(ctx):
-  guildguild= client.get_guild(796624935165886496)
-  desc = await guildguild.get_emojis
+async def emojiinfo(ctx,emojiarg : discord.Emoji):
+  ti="Emoji Info"
+  desc=str(emojiarg)+emojiarg.name+"\ncreated by"+str(emojiarg.user)+"at"+str(emojiarg.created_at.strftime("%d %b, %Y (%a) %H:%M:%S"))
+  embed=discord.Embed(title=ti, description=desc, color=0x0061ff)
   await ctx.send(desc)
 
 @bot.command()
@@ -206,7 +333,7 @@ async def emoji(ctx,*,newsec):
   await ctx.send(newsec)
 
 @bot.command()
-async def timer(ctx,seconds):
+async def timer(ctx,seconds,*,Text=None):
   newsec=seconds
   newsec=newsec.replace("1",":one: ")
   newsec=newsec.replace("2",":two: ")
@@ -244,11 +371,14 @@ async def timer(ctx,seconds):
       desc=newsec+"seconds left"
     await message.edit(content=desc)
     seconds=str(int(seconds)-1)
-  await ctx.send("Countdown complete!")
+  if Text==None:
+    await message.reply("Countdown complete!")
+  else:
+        await message.reply("Countdown complete! "+Text)
 
 
 @bot.command()
-async def role(ctx, member : discord.Member, role : discord.Role):
+async def getrole(ctx, member : discord.Member, role : discord.Role):
     
     roles=member.roles
     if roles.count(role)==1:
@@ -300,17 +430,66 @@ async def avatar(ctx,user: discord.Member=None):
   await ctx.send(embed=embed)
 
 @bot.command()
-async def user(ctx,user: discord.Member=None):
+async def role(ctx,role: discord.Role=None):
+  ti="Role Information: "+role.name
+  if role==None:
+    role=ctx.authortop_role
+  desc=role.mention
+  embed=discord.Embed(title=ti,color=role.color, description=desc)
+  memberlist=role.members
+  if len(memberlist)==0:
+    f0v="No members assigned with "+role.name
+  else:
+    f0v=""
+    for count in memberlist:
+      f0v=f0v+count.name
+  mention=role.mentionable
+  if mention:
+    f1v="Mentionable"
+  else:
+    f1v="Not mentionable"
+  f1v=f1v+"""
+  Mention: `<&"""+str(role.id)+">`"
+  hoisted=role.hoist
+  if hoisted:
+    f2v="Yes"
+  else:
+    f2v="No"
+  f3v=role.created_at.strftime("%d %b, %Y (%a) %H:%M:%S")
+  f4v=role.id
+  f5v=role.position
+  f6v=role.color
+  embed.add_field(name="Mentions", value=f1v, inline=True)
+  embed.add_field(name="Members", value=f0v, inline=True)
+  embed.add_field(name="Displayed separately?", value=f2v, inline=True)
+  embed.add_field(name="Role ID", value=f4v, inline=True)
+  embed.add_field(name="Position in hierarchy", value=f5v, inline=True)
+  embed.add_field(name="Color", value=f6v, inline=True)
+  embed.add_field(name="Created at", value=f3v, inline=True)
+  if role.is_integration():
+    f7v="This role is managed by an integration, such as a bot."
+    embed.add_field(name="Integration", value=f7v, inline=False)
+  #embed.add_field(name="Channel Permissions", value=f3vb, inline=False)
+  await ctx.send(embed=embed)
+
+@bot.command()
+async def user(ctx,user: discord.Member=None, channel: discord.TextChannel=None):
   ti="User Information"
   if user==None:
     user=ctx.author
+  if channel==None:
+    channel=ctx.channel
   bot=user.bot
   if bot==True:
-    desc=f"{user.mention} (bot) "+user.name+"#"+user.descriminator
+    desc=f"{user.mention} (bot) "
   else:
-    desc=f"{user.mention} (human) "+user.name+"#"+user.discriminator
+    desc=f"{user.mention} (human) "
     embed=discord.Embed(title=ti,color=user.color, description=desc)
   embed.set_thumbnail(url=user.avatar_url)
+  if user.name==user.display_name:
+    f0v=user.name+"#"+user.discriminator
+  else:
+    f0v=user.name+"#"+user.discriminator+"  a.k.a. "+user.display_name
   f1v=user.created_at.strftime("%d %b, %Y (%a) %H:%M:%S")
   f2v=user.joined_at.strftime("%d %b, %Y (%a) %H:%M:%S")
   allroles=user.roles
@@ -364,22 +543,6 @@ async def user(ctx,user: discord.Member=None):
   if user.permissions_in(ctx.channel).embed_links:
     f3vb=f3vb+"Embed Links, "
   f3vb=f3vb[:-2]
-  """f3vc=""
-  if user.permissions_in(ctx.channel).connect:
-    f3vc=f3vc+"Connect, "
-  if user.permissions_in(ctx.channel).speak:
-    f3vc=f3vc+"Speak, "
-  if user.permissions_in(ctx.channel).stream:
-    f3vc=f3vc+"Video, "
-  if user.permissions_in(ctx.channel).use_voice_activation:
-    f3vc=f3vc+"Voice Activity, "
-  if user.permissions_in(ctx.channel).priority_speaker:
-    f3vc=f3vc+"Priority Speaker, "
-  if user.permissions_in(ctx.channel).mute_members:
-    f3vc=f3vc+"Mute Members, "
-  if user.permissions_in(ctx.channel).deafen_members:
-    f3vc=f3vc+"Deafen Members, "
-  f3vc=f3vc[:-2]"""
   f4v=""
   if len(allroles)>1:
     for count in allroles:
@@ -393,6 +556,7 @@ async def user(ctx,user: discord.Member=None):
     f5v=f5v+prof.premium_since.strftime("%d %b, %Y (%a) %H:%M:%S")
   else:
     f5v="No Nitro subscriptions"""
+  embed.add_field(name="Name", value=f0v, inline=False)
   embed.add_field(name="Registered", value=f1v, inline=True)
   embed.add_field(name="Joined", value=f2v, inline=True)
   embed.add_field(name="Server Permissions", value=f3v, inline=False)
@@ -402,6 +566,86 @@ async def user(ctx,user: discord.Member=None):
   #embed.add_field(name="Nitro", value=f5v, inline=True)
   #embed.add_field(name="User", value=f6v, inline=True)
   #embed.add_field(name="", value=f7v, inline=True)
+  await ctx.send(embed=embed)
+
+@bot.command()
+async def uservoice(ctx,channel: discord.VoiceChannel, user: discord.Member=None):
+  ti="User Information"
+  if user==None:
+    user=ctx.author
+  bot=user.bot
+  if bot==True:
+    desc=f"{user.mention} (bot) "
+  else:
+    desc=f"{user.mention} (human) "
+    embed=discord.Embed(title=ti,color=user.color, description=desc)
+  embed.set_thumbnail(url=user.avatar_url)
+  if user.name==user.display_name:
+    f0v=user.name+"#"+user.discriminator
+  else:
+    f0v=user.name+"#"+user.discriminator+"  a.k.a. "+user.display_name
+  f1v=user.created_at.strftime("%d %b, %Y (%a) %H:%M:%S")
+  f2v=user.joined_at.strftime("%d %b, %Y (%a) %H:%M:%S")
+  allroles=user.roles
+  f3v=""
+  if user.permissions_in(channel).administrator:
+    f3v=f3v+"Admin, "
+  if user.permissions_in(channel).manage_guild:
+    f3v=f3v+"Manage Server, "
+  if user.permissions_in(channel).manage_roles:
+    f3v=f3v+"Manage Roles, "
+  if user.permissions_in(channel).administrator:
+    f3v=f3v+"Manage Permissions, "
+  if user.permissions_in(channel).view_audit_log:
+    f3v=f3v+"View Audit Logs, "
+  if user.permissions_in(channel).view_guild_insights:
+    f3v=f3v+"View Server Insights, "
+  if user.permissions_in(channel).kick_members:
+    f3v=f3v+"Kick Members, "
+  if user.permissions_in(channel).ban_members:
+    f3v=f3v+"Ban Members, "
+  if user.permissions_in(channel).manage_nicknames:
+    f3v=f3v+"Manage Nicknames, "
+  if user.permissions_in(channel).manage_webhooks:
+    f3v=f3v+"Manage Webhooks, "
+  if user.permissions_in(channel).manage_emojis:
+    f3v=f3v+"Manage Emojis, "
+  if user.permissions_in(channel).manage_nicknames:
+    f3v=f3v+"Change Nickname, "
+  if user.permissions_in(channel).mention_everyone:
+    f3v=f3v+"Mention Everyone, "
+  if user.permissions_in(channel).create_instant_invite:
+    f3v=f3v+"Create Invite, "
+  f3v=f3v[:-2]
+  f3vc=""
+  if user.permissions_in(channel).connect:
+    f3vc=f3vc+"Connect, "
+  if user.permissions_in(channel).speak:
+    f3vc=f3vc+"Speak, "
+  if user.permissions_in(channel).stream:
+    f3vc=f3vc+"Video, "
+  if user.permissions_in(channel).use_voice_activation:
+    f3vc=f3vc+"Voice Activity, "
+  if user.permissions_in(channel).priority_speaker:
+    f3vc=f3vc+"Priority Speaker, "
+  if user.permissions_in(channel).mute_members:
+    f3vc=f3vc+"Mute Members, "
+  if user.permissions_in(channel).deafen_members:
+    f3vc=f3vc+"Deafen Members, "
+  f3vc=f3vc[:-2]
+  f4v=""
+  if len(allroles)>1:
+    for count in allroles:
+      if count.position!=0:
+        f4v=f4v+count.mention+"⠀"
+  else:
+    f4v="No roles"
+  embed.add_field(name="Name", value=f0v, inline=False)
+  embed.add_field(name="Registered", value=f1v, inline=True)
+  embed.add_field(name="Joined", value=f2v, inline=True)
+  embed.add_field(name="Server Permissions", value=f3v, inline=False)
+  embed.add_field(name="Channel Permissions", value=f3vc, inline=False)
+  embed.add_field(name="Roles", value=f4v, inline=True)
   await ctx.send(embed=embed)
 
 @bot.command()
@@ -488,4 +732,4 @@ async def on_ready():
     await bot.change_presence(status=discord.Status.idle, activity=activity)
     print("Bot is ready!")
     
-bot.run('TOKEN IS ENCLOSED')
+bot.run('Token')
