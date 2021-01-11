@@ -2,7 +2,8 @@ import discord
 from discord.ext import commands
 import random as ra
 import time as tm
-from datetime import datetime
+from datetime import datetime, date
+from datetime import timedelta
 from discord_webhook import DiscordWebhook
 from discord.ext.commands import *
 from discord import Webhook, AsyncWebhookAdapter, RequestsWebhookAdapter
@@ -11,31 +12,210 @@ import os
 import aiohttp
 import requests
 from bs4 import BeautifulSoup
-from PIL import Image
 from urllib.request import urlopen
+import urllib3
 import re
+import pathlib
 hexstring_pattern = re.compile(r'#?([0-9A-F]{2})([0-9A-F]{2})([0-9A-F]{2})', re.IGNORECASE)
-
+intents = discord.Intents.all()
+bot = commands.Bot(command_prefix=commands.when_mentioned_or("=" or "!"), intents=intents)
 client = discord.Client()
-bot = commands.Bot(command_prefix=commands.when_mentioned_or("=" or "!"))
 bot.remove_command('help')
 typer=0
+autodel=None
 
-"""@bot.event
-async def on_message(message):
-  if autodel!=None and not(message.content.startswith("=")):
-    tm.sleep(autodel)
-    await message.channel.purge(limit=1)
-    await bot.process_commands(message)
-  return"""
+class MyClient(discord.Client):
+  async def on_ready(self):
+    print('Connected!')
+
+"""async def on_message(message):
+  global autodel
+  #if autodel!=None: and not(message.content.startswith("=")):
+  await message.delete(autodel)
+  await bot.process_commands(message)"""
+
+@bot.event
+async def on_member_update(before, after):
+  desc="Profile of "+before.mention+" was updated!"
+  embed = discord.Embed(title="Profile update", description=desc, color=after.color)
+  if before.status != after.status:
+    embed.add_field(name="Status before", value=before.status, inline=False)
+    embed.add_field(name="Status after", value=after.status, inline=False)
+  if before.activity != after.activity:
+    embed.add_field(name="Activity before", value=before.activity.name, inline=False)
+    embed.add_field(name="Activity after", value=after.activity.name, inline=False)
+    #embed.add_field(name="Activity state", value=after.activity.state, inline=True)
+    #embed.set_thumbnail(url=activity.large_image_url)
+  if before.nick != after.nick:
+    embed.add_field(name="Nickname before", value=before.nick, inline=False)
+    embed.add_field(name="Nickname after", value=after.nick, inline=False)
+  if before.roles != after.roles:
+    br=""
+    ar=""
+    for count in before.roles:
+      br=br+count.mention+" "
+    br=br[:-1]
+    for count in after.roles:
+      ar=ar+count.mention+" "
+    ar=ar[:-1]
+    embed.add_field(name="Roles before", value=br, inline=False)
+    embed.add_field(name="Roles after", value=ar, inline=False)
+  embed.set_thumbnail(url=after.avatar_url)
+  sendto = bot.get_channel(797989308023832607)
+  if after.name!="NQN":
+    await sendto.send(embed=embed)
+
+@bot.event
+async def on_member_join(member):
+  desc="Welcome, "+member.mention+"! Wish you a pleasure time in the server."
+  embed = discord.Embed(title="Welcome", description=desc)
+  sendto = bot.get_channel(796624935606026241)
+  await sendto.send(embed=embed)
+
+@bot.event
+async def on_message_delete(message):
+  desc="Message deleted in "+message.channel.mention+f"\n"+message.content
+  embed = discord.Embed(title="Message Deleted", description=desc)
+  sendto = bot.get_channel(797989308023832607)
+  await sendto.send(embed=embed)
+
+@bot.event
+async def on_message_edit(before, after):
+  desc="Message edited in "+before.channel.mention+f"\n [Jump!]("+after.jump_url+")"
+  embed = discord.Embed(title="Message Edited", description=desc)
+  embed.add_field(name="Before", value=before.content, inline=False)
+  embed.add_field(name="After", value=after.content, inline=False)
+  sendto = bot.get_channel(797989308023832607)
+  if len(before.content)!=0 and len(after.content)!=0:
+    await sendto.send(embed=embed)
+
+@bot.event
+async def on_guild_role_create(role):
+  desc=role.mention+" was created."
+  embed = discord.Embed(title="New role created!", description=desc)
+  sendto = bot.get_channel(797989308023832607)
+  await sendto.send(embed=embed)
+
+@bot.event
+async def on_guild_role_delete(role):
+  desc=role.mention+" was deleted."
+  embed = discord.Embed(title="Role deleted!", description=desc, color=role.color)
+  sendto = bot.get_channel(797989308023832607)
+  await sendto.send(embed=embed)
+
+@bot.event
+async def on_typing(channel, user, when):
+  desc=user.mention+" started typing in "+channel.mention+" at "+when.strftime("%d %b, %Y (%a) %H:%M:%S")
+  embed = discord.Embed(title="Typing!", description=desc, color=user.color)
+  sendto = bot.get_channel(797989308023832607)
+  await sendto.send(embed=embed)
+
+@bot.event
+async def on_user_update(before, after):
+  desc="Profile of "+before.mention+" was updated!"
+  embed = discord.Embed(title="Profile update", description=desc)
+  if before.avatar != after.avatar:
+    embed.add_field(name="Avatar before", value="[click]("+str(before.avatar_url)+")", inline=False)
+    embed.set_thumbnail(url=before.avatar_url)
+    embed.add_field(name="Avatar after", value="[click]("+str(after.avatar_url)+")", inline=False)
+  """if before.discriminator != after.discriminator:
+    embed.add_field(name="Discriminator before", value="#"+before.discriminator, inline=False)
+    embed.add_field(name="Discriminator after", value="#"+after.discriminator, inline=False)"""
+  if before.name != after.name:
+    embed.add_field(name="Username before", value=before.name, inline=False)
+    embed.add_field(name="Username after", value=after.name, inline=False)
+  embed.set_thumbnail(url=after.avatar_url)
+  sendto = bot.get_channel(797989308023832607)
+  await sendto.send(embed=embed)
 
 @bot.command()
+async def status(ctx, member : discord.User = None)
+  if member==None:
+    member=ctx.author
+
+@bot.command()
+async def ping(ctx):
+  now1 = datetime.now()
+  message = await ctx.send("Pong!")
+  sec = str((datetime.now() - now1).seconds)
+  mcs = str((datetime.now() - now1).microseconds)
+  await message.edit(content="Pong! "+sec+" seconds  "+mcs+" microseconds")
+
+@bot.command()
+async def guess(ctx, image : discord.Attachment = None):
+  if image==None:
+    images = ctx.message.attachments
+  if len(images)==0:
+    await ctx.send("Please upload an image")
+  else:
+    image = images[0]
+    r = requests.get("https://www.google.com/searchbyimage?&image_url="+image.url)
+    page_source = r.text#.decode()
+    page_sourceraw = page_source.splitlines()
+    match = re.search('title="Search" value="(.*?)" aria-label="Search"', page_sourceraw)
+    if match:
+      await ctx.send(f'I guess it is {match.group(1)!r}?')
+    else:
+      await ctx.send('I have no idea what that is.')
+
+@bot.command()
+async def purgereactions(ctx, messages, emoji: discord.Emoji = None):
+  if emoji == None:
+    async for message in ctx.channel.history(limit=int(messages)+1):
+      await message.clear_reactions()
+  else:
+    async for message in ctx.channel.history(limit=int(messages)+1):
+      await message.clear_reaction(emoji)
+
+@bot.command(pass_context=True)
+async def react(ctx, message : discord.Message, emoji : discord.Emoji):
+  await ctx.message.delete()
+  await message.add_reaction(emoji)
+  tm.sleep(3)
+  member=ctx.guild.get_member(796686363604680755)
+  await message.remove_reaction(emoji, member)
+
+@bot.command(pass_context=True)
 async def pretend(ctx, member : discord.Member, *, message):
-  await ctx.channel.purge(limit=1)
+  await ctx.message.delete()
   async with aiohttp.ClientSession() as session:
-    #webhook = Webhook.from_url('https://discord.com/api/webhooks/797029335424434186/op96Pi7p-F4mGNWPUbMW5iKwUiQ1tPU_1p-9CkcVpzfrXLYhRMK6E--C0s1rG76BtX9m', adapter=AsyncWebhookAdapter(session))
     webhook = Webhook.partial(797029335424434186, 'op96Pi7p-F4mGNWPUbMW5iKwUiQ1tPU_1p-9CkcVpzfrXLYhRMK6E--C0s1rG76BtX9m', adapter=RequestsWebhookAdapter())
   await webhook.send(message, username=member.name, avatar_url=member.avatar_url)
+
+@bot.command(pass_context=True)
+async def pretendembed(ctx, member : discord.Member, *, text):
+  await ctx.message.delete()
+  async with aiohttp.ClientSession() as session:
+    webhook = Webhook.partial(797029335424434186, 'op96Pi7p-F4mGNWPUbMW5iKwUiQ1tPU_1p-9CkcVpzfrXLYhRMK6E--C0s1rG76BtX9m', adapter=RequestsWebhookAdapter())
+  textlist=text.splitlines()
+  if textlist[3]=="":
+    embed=discord.Embed(title=textlist[0], url=textlist[1], description=textlist[2].replace("{{{newline}}}","\n"))
+  else:
+    embed=discord.Embed(title=textlist[0], url=textlist[1], description=textlist[2].replace("{{{newline}}}","\n"), color=int(textlist[3]))
+  textlist.remove(textlist[0])
+  textlist.remove(textlist[0])
+  textlist.remove(textlist[0])
+  textlist.remove(textlist[0])
+  embed.set_author(name=textlist[0], url=textlist[1], icon_url=textlist[2])
+  textlist.remove(textlist[0])
+  textlist.remove(textlist[0])
+  textlist.remove(textlist[0])
+  embed.set_footer(text=textlist[0])
+  textlist.remove(textlist[0])
+  embed.set_thumbnail(url=textlist[0])
+  textlist.remove(textlist[0])
+  embed.set_image(url=textlist[0])
+  textlist.remove(textlist[0])
+  for count in range(0,len(textlist)//3):
+    if textlist[2].lower()=="y" or textlist[2].lower()=="yes" or textlist[2].lower()=="true" or textlist[2].lower()=="1":
+      inl=True
+    else:
+      inl=False
+    embed.add_field(name=textlist[0], value=textlist[1].replace("{{{newline}}}","\n"), inline=inl)
+    textlist.remove(textlist[0])
+    textlist.remove(textlist[0])
+    textlist.remove(textlist[0])
+  await webhook.send(embed=embed, username=member.name, avatar_url=member.avatar_url)
 
 @bot.command()
 async def type(ctx):
@@ -64,6 +244,10 @@ async def embed(ctx,*,text):
   textlist.remove(textlist[0])
   embed.set_footer(text=textlist[0])
   textlist.remove(textlist[0])
+  embed.set_thumbnail(url=textlist[0])
+  textlist.remove(textlist[0])
+  embed.set_image(url=textlist[0])
+  textlist.remove(textlist[0])
   for count in range(0,len(textlist)//3):
     if textlist[2].lower()=="y" or textlist[2].lower()=="yes" or textlist[2].lower()=="true" or textlist[2].lower()=="1":
       inl=True
@@ -83,15 +267,16 @@ async def insert(ctx,emoji,*,text):
 
 @bot.command()
 async def purge(ctx,num):
-  await ctx.channel.purge(limit=1)
   num=int(num)
-  await ctx.channel.purge(limit=num)
+  await ctx.channel.purge(limit=num+1)
+
 """@bot.command()
-async def autodelete(ctx,num):
+async def autodelete(ctx,num=None):
+  global autodel
   isnum=num.isnumeric()
   if isnum:
     autodel=int(num)
-    await ctx.send("Autodelete has been set to "+num+" seconds.")
+    await ctx.send("Autodelete has been set to "+str(autodel)+" seconds.")
   else:
     autodel=None
     await ctx.send("Autodelete has been disabled.")"""
@@ -171,7 +356,7 @@ async def color(ctx,arg1,arg2=None,arg3=None):
   embed.add_field(name="RGB", value=rgb, inline=True)
   embed.add_field(name="Hex Code", value="#"+hexc, inline=True)
   embed.add_field(name="Decimal Value", value=deci, inline=True)
-  embed.set_image(url="https://htmlcolors.com/color-image/"+hexc+".png")
+  embed.set_thumbnail(url="https://htmlcolors.com/color-image/"+hexc+".png")
   await ctx.send(embed=embed)
   
 @bot.command()
@@ -246,9 +431,11 @@ async def getprefix(bot, message):
 @bot.command()
 async def emojiinfo(ctx,emojiarg : discord.Emoji):
   ti="Emoji Info"
-  desc=str(emojiarg)+emojiarg.name+"\ncreated by"+str(emojiarg.user)+"at"+str(emojiarg.created_at.strftime("%d %b, %Y (%a) %H:%M:%S"))
+  creator=await ctx.guild.fetch_emoji(emojiarg.id)
+  desc=str(emojiarg)+emojiarg.name+"\nCreated by "+str(creator.user.mention)+" at "+str(emojiarg.created_at.strftime("%d %b, %Y (%a) %H:%M:%S"))
   embed=discord.Embed(title=ti, description=desc, color=0x0061ff)
-  await ctx.send(desc)
+  embed.add_field(name="ID", value=emojiarg.id, inline=True)
+  await ctx.send(embed=embed)
 
 @bot.command()
 async def reverse(ctx,*,text):
@@ -473,6 +660,161 @@ async def role(ctx,role: discord.Role=None):
   await ctx.send(embed=embed)
 
 @bot.command()
+async def server(ctx):
+  guild=ctx.guild
+  ti=guild.name
+  desc="Created at "+guild.created_at.strftime("%d %b, %Y (%a) %H:%M:%S")+" by "+str(guild.owner.mention)+"""
+Region: """+str(guild.region)
+  embed=discord.Embed(title=ti,color=0x0061ff, description=desc)
+  embed.set_author(name="Server Information",icon_url=guild.icon_url)
+  f0v=""
+  for count in guild.text_channels:
+    f0v=f0v+str(count.mention)+" "
+  f1v=""
+  f0v=f0v[:-1]
+  if len(guild.voice_channels)==0:
+    f1v="No Voice Channels"
+  else:
+    for count in guild.voice_channels:
+      f1v=f1v+str(count.name)+", "
+    f1v=f1v[:-2]
+  f1vb=""
+  if len(guild.categories)==0:
+    f1v="No Categories"
+  else:
+    for count in guild.categories:
+      f1vb=f1vb+str(count.name)+", "
+    f1vb=f1vb[:-2]
+  f1va=""
+  f1valist=guild.roles
+  f1valist.reverse()
+  for count in f1valist:
+    f1va=f1va+count.mention+" "
+  f1va=f1va[:-1]
+  f2v=str(guild.bitrate_limit//1000)+" kbps"
+  f3v=str(guild.filesize_limit//1048576)+" MB"
+  f4v=str(guild.emoji_limit)
+  f5v=guild.mfa_level
+  if f5v==1:
+    f5v="Required"
+  else:
+    f5v="Not Required"
+  f6v=str(guild.verification_level)
+  f7v=guild.explicit_content_filter
+  if f7v=="disabled":
+    f7v="Disabled"
+  if f7v=="no_role":
+    f7v="Member without roles"
+  if f7v=="all_members":
+    f7v="All Members"""
+  f8v=""
+  for count in guild.members:
+    f8v=f8v+count.mention+" "
+  f8v=f8v[:-1]
+  f10va=str(guild.id)
+  f11v=""
+  f12v=""
+  for count in guild.emojis:
+    if count.animated==False:
+      f11v=f11v+str(count)+" "
+    else:
+      f12v=f12v+str(count)+" "
+  f11v=f11v[:-1]
+  f12v=f12v[:-1]
+  f13v=guild.description
+  if f13v==None:
+    f13v="No description"
+  f14vlist=await guild.bans()
+  f14v=""
+  for count in f14vlist:
+    f14v=f14v+count.user.mention+" "
+  f14v=f14v[:-1]
+  embed.add_field(name="Text Channels ("+str(len(guild.text_channels))+")", value=f0v, inline=True)
+  embed.add_field(name="Voice Channels ("+str(len(guild.voice_channels))+")", value=f1v, inline=True)
+  embed.add_field(name="Categories ("+str(len(guild.categories))+")", value=f1vb, inline=True)
+  embed.add_field(name="Roles ("+str(len(guild.roles))+")", value=f1va, inline=False)
+  embed.add_field(name="Members ("+str(len(guild.members))+")", value=f8v, inline=False)
+  embed.add_field(name="Max bitrate", value=f2v, inline=True)
+  embed.add_field(name="Max filesize", value=f3v, inline=True)
+  embed.add_field(name="Max emojis", value=f4v, inline=True)
+  embed.add_field(name="2FA for Moderation", value=f5v, inline=True)
+  embed.add_field(name="Verification Level", value=f6v, inline=True)
+  embed.add_field(name="Explict Content Filter", value=f7v, inline=True)
+  if guild.afk_channel!=None:
+    f9v=str(guild.afk_timeout//60)+" mins"
+    f10v=guild.afk_channel
+    embed.add_field(name="AFK Timeout", value=f9v, inline=True)
+    embed.add_field(name="AFK Channel", value=f10v, inline=True)
+  embed.add_field(name="ID", value=f10va, inline=True)
+  if guild.features.count("COMMUNITY")==1:
+    embed.add_field(name="Community", value="This is a community server.", inline=True)
+  if guild.features.count("WELCOME_SCREEN_ENABLED")==1:
+    embed.add_field(name="Welcome Screen", value="The server has enabled the welcome screen.", inline=True)
+  if guild.features.count("PUBLIC")==1:
+    embed.add_field(name="Public", value="This is a public server.", inline=True)
+  embed.add_field(name="Description", value=f13v, inline=False)
+  if len(f11v)!=0:
+    embed.add_field(name="Emojis", value=f11v, inline=True)
+  if len(f12v)!=0:
+    embed.add_field(name="Animated emojis", value=f12v, inline=True)
+  if len(f14v)!=0:
+    embed.add_field(name="Banned Users", value=f14v, inline=True)
+  await ctx.send(embed=embed)
+
+@bot.command()
+async def template(ctx,template: discord.Template):
+  ti="Template Information: "+template.name+" ("+template.code+")"
+  desc="Created at "+template.created_at.strftime("%d %b, %Y (%a) %H:%M:%S")+" by "+str(template.creator)
+  f0v=template.description
+  f1v=template.uses
+  f2v=template.updated_at.strftime("%d %b, %Y (%a) %H:%M:%S")
+  f3v=template.source_guild
+  embed.add_field(name="Description", value=f0v, inline=False)
+  embed.add_field(name="Uses", value=f1v, inline=True)
+  embed.add_field(name="Synced", value=f2v, inline=True)
+  embed.add_field(name="Original Server", value=f3v, inline=True)
+  await ctx.send(embed=embed)
+
+@bot.command()
+async def invite(ctx,inviteinput: discord.Invite):
+  ch=inviteinput.channel
+  allinvites=await ch.invites()
+  for count in allinvites:
+    if count==inviteinput:
+      invite=count
+      break
+  ti="Invite Information: "+invite.code
+  desc="Created at "+invite.created_at.strftime("%d %b, %Y (%a) %H:%M:%S")+" by "+str(invite.inviter)
+  embed=discord.Embed(title=ti,color=0x0061ff, description=desc)
+  f00v=invite.guild
+  f0v=str(invite.uses)+"/"+str(invite.max_uses)
+  f1v=invite.temporary
+  f2v=invite.channel.mention+" ("+str(invite.channel.type)+")"
+  f3v=invite.url
+  f4v=invite.id
+  age=invite.max_age
+  if age==0:
+    f5v="Never Expires"
+  elif age<60:
+    f5v=str(age)+" secs"
+  elif age>3600:
+    f5v=str(age/3600)+" hrs"
+  else:
+    f5v=str(age/60)+" mins"
+  f6v=str(invite.revoked)
+  f7v=(invite.created_at + timedelta(seconds=age)).strftime("%d %b, %Y (%a) %H:%M:%S")
+  embed.add_field(name="Server", value=f00v, inline=True)
+  embed.add_field(name="Uses", value=f0v, inline=True)
+  embed.add_field(name="Temporary?", value=f1v, inline=True)
+  embed.add_field(name="URL", value=f3v, inline=True)
+  embed.add_field(name="Channel", value=f2v, inline=True)
+  embed.add_field(name="ID", value=f4v, inline=True)
+  embed.add_field(name="Expires", value=f7v, inline=True)
+  embed.add_field(name="Valid Duration", value=f5v, inline=True)
+  embed.add_field(name="Expired?", value=f6v, inline=True)
+  await ctx.send(embed=embed)
+
+@bot.command()
 async def user(ctx,user: discord.Member=None, channel: discord.TextChannel=None):
   ti="User Information"
   if user==None:
@@ -543,6 +885,7 @@ async def user(ctx,user: discord.Member=None, channel: discord.TextChannel=None)
   if user.permissions_in(ctx.channel).embed_links:
     f3vb=f3vb+"Embed Links, "
   f3vb=f3vb[:-2]
+  f3vc=str(user.activity)
   f4v=""
   if len(allroles)>1:
     for count in allroles:
@@ -561,7 +904,7 @@ async def user(ctx,user: discord.Member=None, channel: discord.TextChannel=None)
   embed.add_field(name="Joined", value=f2v, inline=True)
   embed.add_field(name="Server Permissions", value=f3v, inline=False)
   embed.add_field(name="Channel Permissions", value=f3vb, inline=False)
-  #embed.add_field(name="Voice Permissions", value=f3vc, inline=False)
+  embed.add_field(name="Activity", value=f3vc, inline=True)
   embed.add_field(name="Roles", value=f4v, inline=True)
   #embed.add_field(name="Nitro", value=f5v, inline=True)
   #embed.add_field(name="User", value=f6v, inline=True)
@@ -648,20 +991,32 @@ async def uservoice(ctx,channel: discord.VoiceChannel, user: discord.Member=None
   embed.add_field(name="Roles", value=f4v, inline=True)
   await ctx.send(embed=embed)
 
-@bot.command()
+@bot.command(pass_context=True)
 async def spam(ctx,times,*,message):
-  await ctx.channel.purge(limit=1)
-  for count in range(0,int(times)):
-    await ctx.send(message)
+  if int(times)<30 and message.count("@")==0:
+    await ctx.message.delete()
+    for count in range(0,int(times)):
+      await ctx.send(message)
+  else:
+    await ctx.send("Please spam less than 30 times without any pings.")
+
+@bot.command()
+async def ban(ctx, user: discord.Member, *, reason="No reason provided"):
+  await user.ban(reason=reason)
+  embed = discord.Embed(title=f"{user.name} was banned.", description=f"Reason: {reason}\nBy: {ctx.author.mention}")
+  sendto = bot.get_channel(796721534676762664)
+  await sendto.send(embed=embed)
+  embed = discord.Embed(title=f"You were banned from the server.", description=f"Reason: {reason}\nBy: {ctx.author.mention}")
+  await user.send(embed=embed)
 
 @bot.command()
 async def kick(ctx, user: discord.Member, *, reason="No reason provided"):
-        await user.kick(reason=reason)
-        embed = discord.Embed(title=f"{user.name} was kicked.", description=f"Reason: {reason}\nBy: {ctx.author.mention}")
-        channel = client.get_channel(796721534676762664)
-        await ctx.channel.send(embed=embed)
-        embed = discord.Embed(title=f"You were kicked from the server.", description=f"Reason: {reason}\nBy: {ctx.author.mention}")
-        await user.send(embed=embed)
+  await user.kick(reason=reason)
+  embed = discord.Embed(title=f"{user.name} was kicked.", description=f"Reason: {reason}\nBy: {ctx.author.mention}")
+  sendto = bot.get_channel(796721534676762664)
+  await sendto.send(embed=embed)
+  embed = discord.Embed(title=f"You were kicked from the server.", description=f"Reason: {reason}\nBy: {ctx.author.mention}")
+  await user.send(embed=embed)
 
 @bot.command()
 async def gsmrl(ctx):
@@ -731,5 +1086,3 @@ async def on_ready():
     activity = discord.Game(name="with TA members", type=3)
     await bot.change_presence(status=discord.Status.idle, activity=activity)
     print("Bot is ready!")
-    
-bot.run('Token')
