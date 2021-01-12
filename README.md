@@ -98,6 +98,10 @@ For technics: Any Python function in the math module or default is available.
 
 Use `+`, `-`, `*`, `/`, `×`, `÷`, `^`, `**` to do basic arithmetic. (`**` is equal to `^`)
 
+`float()` explicitly makes the result a float number, i.e. a number with a decimal point.
+
+`floor()` and `ceil()` rounds the number down/up to the closest integer.
+
 #### Scientific Math
 Function | Usage
 :---:|:---:
@@ -105,6 +109,7 @@ Function | Usage
 `sqrt()` or `√()` | [square root](https://en.wikipedia.org/wiki/Square_root)
 `sin()` `cos()` `tan()` | [trigonometry](https://en.wikipedia.org/wiki/Trigonometry)
 `asin()` `acos()` `atan()` | [inverse trigonometry](https://en.wikipedia.org/wiki/Inverse_trigonometric_functions)
+`factorial()` | [factorial](https://en.wikipedia.org/wiki/Factorial) e.g. factorial(5)=5×4×3×2×1
 
 #### Comparisons and Logic Gates
 
