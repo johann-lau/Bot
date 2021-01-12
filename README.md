@@ -120,3 +120,9 @@ Function | Meaning
 Logic Gates
 
 `and`, `or` and `not` are the only available logic gates.
+
+#### Variable Assignment
+
+To Assign a value to a variable, use `{variable} = {value}`. For example, to assign 3 to a, use `a = 3`.
+
+You can assign multiple variables at once, for example, `a = b = c = sqrt(9)`.
