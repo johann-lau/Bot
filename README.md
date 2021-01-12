@@ -92,10 +92,17 @@ There are certain character limits:
 
 ### Math help
 
+For technics: Any Python function in the math module or default is available.
+
 #### Basic arithmetic
 
 Use `+`, `-`, `*`, `/`, `×`, `÷`, `^`, `**` to do basic arithmetic. (`**` is equal to `^`)
 
 #### Scientific math
+Function | Usage
+---|---
+`mod` or `%` | [modulus](https://en.wikipedia.org/wiki/Modulo_operation).
+`sqrt()` or `√()` | square root
 
-Use `mod` or `%` to calculate [modulus](https://en.wikipedia.org/wiki/Modulo_operation).
+#### Logical comparison
+
