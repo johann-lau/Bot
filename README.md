@@ -103,6 +103,8 @@ Function | Usage
 :---:|:---:
 `mod` or `%` | [modulus](https://en.wikipedia.org/wiki/Modulo_operation)
 `sqrt()` or `√()` | [square root](https://en.wikipedia.org/wiki/Square_root)
+`sin()` `cos()` `tan()` | [trigonometry](https://en.wikipedia.org/wiki/Trigonometry)
+`asin()` `acos()` `atan()` | [inverse trigonometry](https://en.wikipedia.org/wiki/Inverse_trigonometric_functions)
 
 #### Comparisons and Logic Gates
 
