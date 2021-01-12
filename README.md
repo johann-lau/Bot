@@ -106,10 +106,12 @@ Use `+`, `-`, `*`, `/`, `×`, `÷`, `^`, `**` to do basic arithmetic. (`**` is e
 Function | Usage
 :---:|:---:
 `mod` or `%` | [modulus](https://en.wikipedia.org/wiki/Modulo_operation)
+`factorial()` | [factorial](https://en.wikipedia.org/wiki/Factorial) e.g. factorial(5)=5×4×3×2×1
 `sqrt()` or `√()` | [square root](https://en.wikipedia.org/wiki/Square_root)
 `sin()` `cos()` `tan()` | [trigonometry](https://en.wikipedia.org/wiki/Trigonometry)
 `asin()` `acos()` `atan()` | [inverse trigonometry](https://en.wikipedia.org/wiki/Inverse_trigonometric_functions)
-`factorial()` | [factorial](https://en.wikipedia.org/wiki/Factorial) e.g. factorial(5)=5×4×3×2×1
+`gcd()` or `hcf()` | [Greatest common divisor](https://en.wikipedia.org/wiki/Greatest_common_divisor)
+`lcm` | [Least common multiple](https://en.wikipedia.org/wiki/Least_common_multiple)
 
 #### Comparisons and Logic Gates
 
