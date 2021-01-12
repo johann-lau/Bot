@@ -15,7 +15,11 @@
 
 **spam {Times} {Text}** Spams the text for a number of times.
 
-**embed** Gives a custom embed. Please check [here](https://github.com/johann-lau/Bot/blob/main/README.md#embed-message-help).
+**embed {arguments}** Gives a custom embed. Please check [here](https://github.com/johann-lau/Bot/blob/main/README.md#embed-message-help).
+
+**embed {User} {arguments}** Pretends as a user and send a custom embed. Please check [here](https://github.com/johann-lau/Bot/blob/main/README.md#embed-message-help).
+
+**math {arguments}** Calculates a formula. Please check [here](https://github.com/johann-lau/Bot/blob/main/README.md#math-help).
 
 ### Tunnelers' Abyss
 
@@ -85,3 +89,5 @@ There are certain character limits:
 - A field's name is limited to 256 characters and its description to 1024 characters
 - The footer text is limited to 2048 characters
 - The author name is limited to 256 characters
+
+### Math help
