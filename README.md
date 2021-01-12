@@ -100,7 +100,9 @@ Use `+`, `-`, `*`, `/`, `×`, `÷`, `^`, `**` to do basic arithmetic. (`**` is e
 
 `float()` explicitly makes the result a float number, i.e. a number with a decimal point.
 
-`floor()` and `ceil()` rounds the number down/up to the closest integer.
+`floor()` and `ceil()` rounds the number down/up to the closest integer
+
+`round()` rounds the number to the closest integer.
 
 #### Scientific Math
 Function | Usage
