@@ -143,8 +143,14 @@ To Assign a value to a variable, use `{variable} = {value}`. For example, to ass
 
 You can assign multiple variables at once, for example, `a = b = c = sqrt(9)`.
 
-#### Lists
+#### Custom unctions
 
-Lists are wrapped in square brackets and elements are separated by commas. An example list can be `[1, 2, 3]`.
+Do you want to make a convenient function that you can call easily? If yes, you can use custom functions!
 
-To extract the n-1 th element from a list, use `{List}[{n}]`. An example can be `[1, 2, 4, 8, 16][3] = 8`.
+First, you need to define the function. Its syntax is `=define {name} {definition} {arguments separated by spaces}`.
+
+For example, to define a function that adds two numbers together, use `=define add x+y x y`.
+
+Now that you have defined some awesome functions, how do you use them? Simply use `=calc {function name}({arguments})`. To use the example add function, use `=calc add(1,2)` and you get 3.
+
+
