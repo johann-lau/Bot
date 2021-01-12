@@ -100,9 +100,9 @@ Use `+`, `-`, `*`, `/`, `×`, `÷`, `^`, `**` to do basic arithmetic. (`**` is e
 
 #### Scientific math
 Function | Usage
----|---
-`mod` or `%` | [modulus](https://en.wikipedia.org/wiki/Modulo_operation).
-`sqrt()` or `√()` | square root
+:---:|:---:
+`mod` or `%` | [modulus](https://en.wikipedia.org/wiki/Modulo_operation)
+`sqrt()` or `√()` | [square root]()
 
 #### Logical comparison
 
