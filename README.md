@@ -139,3 +139,9 @@ Logic Gates
 To Assign a value to a variable, use `{variable} = {value}`. For example, to assign 3 to a, use `a = 3`.
 
 You can assign multiple variables at once, for example, `a = b = c = sqrt(9)`.
+
+#### Lists
+
+Lists are wrapped in square brackets and elements are separated by commas. An example list can be `[1, 2, 3]`.
+
+To extract the n-1 th element from a list, use `{List}[{n}]`. An example can be `[1, 2, 4, 8, 16][3] = 8`.
