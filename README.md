@@ -94,15 +94,29 @@ There are certain character limits:
 
 For technics: Any Python function in the math module or default is available.
 
-#### Basic arithmetic
+#### Basic Arithmetic
 
 Use `+`, `-`, `*`, `/`, `×`, `÷`, `^`, `**` to do basic arithmetic. (`**` is equal to `^`)
 
-#### Scientific math
+#### Scientific Math
 Function | Usage
 :---:|:---:
 `mod` or `%` | [modulus](https://en.wikipedia.org/wiki/Modulo_operation)
-`sqrt()` or `√()` | [square root]()
+`sqrt()` or `√()` | [square root](https://en.wikipedia.org/wiki/Square_root)
 
-#### Logical comparison
+#### Comparisons and Logic Gates
 
+Comparisons
+
+Function | Meaning
+:---:|:---:
+`==` | Equal to
+`!=` | Not equal to
+`>` | Greater than
+`<` | Smaller than
+`>=` | Greater than or equal to
+`<=` | Smaller than or equal to
+
+Logic Gates
+
+`and`, `or` and `not` are the only available logic gates.
