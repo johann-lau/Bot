@@ -116,6 +116,7 @@ Function | Usage
 `lcm()` \*| [Least common multiple](https://en.wikipedia.org/wiki/Least_common_multiple)
 `exp()` | [Exponential](https://en.wikipedia.org/wiki/Exponential_function)
 `log(x, base)` | [Logarithm](https://en.wikipedia.org/wiki/Logarithm) base is optional, default to 10
+`degrees()` `radians()` | Converts between degrees and radians
 
 \* You can have as many arguments as you want in the parenthesis.
 
