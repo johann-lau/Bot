@@ -91,3 +91,11 @@ There are certain character limits:
 - The author name is limited to 256 characters
 
 ### Math help
+
+#### Basic arithmetic
+
+Use `+`, `-`, `*`, `/`, `×`, `÷`, `^`, `**` to do basic arithmetic. (`**` is equal to `^`)
+
+#### Scientific math
+
+Use `mod` or `%` to calculate [modulus](https://en.wikipedia.org/wiki/Modulo_operation).
