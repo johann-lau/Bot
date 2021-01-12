@@ -147,7 +147,7 @@ You can assign multiple variables at once, for example, `a = b = c = sqrt(9)`.
 
 Do you want to make a convenient function that you can call easily? If yes, you can use custom functions!
 
-First, you need to define the function. Its syntax is `=define {name} {definition} {arguments separated by spaces}`.
+First, you need to define the function. Its syntax is `=define {name} {definition} {arguments separated by spaces}`. If it was sucessful you will see a 👍 reaction.
 
 For example, to define a function that adds two numbers together, use `=define add x+y x y`.
 
