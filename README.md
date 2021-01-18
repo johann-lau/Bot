@@ -157,6 +157,14 @@ Now that you have defined some awesome functions, how do you use them? Simply us
 
 Ever wanted to use Dyno to replace Tunnelers' Bot? Before you made your decision…
 
+#### Branding
+
+What happens when you use a command? Instead of only seeing the result, you also see a Dyno avatar… an advertisement… or a premium-only message. Remember - whenever you add a bot, you also advertise it. You are advertising Dyno. How to fix the problem? Use ad-free TA Bot.
+
+#### Premium
+
+Spend money on a bot? Don't be stupid, we already provided an alternative. Tunnelers' Bot is absolutely free for forever and there will not be additional charges. Not to surprise you, but I don't even accept donations. Huh?
+
 #### Hosting problems
 
 Dyno is slower in speed (often 200\~450 ms, can reach \~1660) while Tunnelers' Bot is quick (80\~100 ms, can reach \~200) when hosted. Even if TA bot is locally hosted it still gives \~300 ms speed. This is mainly because it is in a single server and doesn't have to deal with many simultaneous commands.
@@ -217,4 +225,4 @@ Roles | ✓ | ✓
 
 Brackets between the tick means that the information is not accurate.
 
-Of course, the commands doesn't stop here. However, to make a conclusion, TA Bot stuffs everything possible from the library, while Dyno picks the most "important" ones only.
+Of course, the commands doesn't stop here. TA Bot provides other commands (e.g. screenshot) which won't appear in **any other bot**. However, to make a conclusion, TA Bot stuffs everything possible from the library, while Dyno picks the most "important" ones only.
