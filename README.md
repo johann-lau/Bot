@@ -207,7 +207,7 @@ Avatar | ✓ | ✓
 Name | ✓ | ✓
 Descriminator |  | ✓
 Registered at | (✓) | ✓
-Joined at | ✓ | ✓
+Joined at | (✓) | ✓
 ID | ✓ | ✓
 Human/Bot |  | ✓
 Server Permissions |  | ✓
