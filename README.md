@@ -153,4 +153,12 @@ For example, to define a function that adds two numbers together, use `=define a
 
 Now that you have defined some awesome functions, how do you use them? Simply use `=calc {function name}({arguments})`. To use the example add function, use `=calc add(1,2)` and you get 3.
 
+## Dyno disadvantages
 
+###### Third-party
+
+Using a third-party bot means a bunch of disadvantages. You have no control over them and you cannot make them add or modify commands, or change the avatar or logo. The new commands might lead to problems. They don't have true 24/7 uptime which is crucial for spam management.
+
+###### Slowmode
+
+An annoying "A little quick here" message appears once you use the commands quickly. This is annoying when you want to purge messages or run a speedtest.
