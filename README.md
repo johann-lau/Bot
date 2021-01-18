@@ -216,3 +216,5 @@ Status/Game |  | ✓
 Roles | ✓ | ✓
 
 Brackets between the tick means that the information is not accurate.
+
+Of course, the commands doesn't stop here. However, to make a conclusion, TA Bot stuffs everything possible from the library, while Dyno picks the most "important" ones only.
