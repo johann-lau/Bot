@@ -155,10 +155,10 @@ Now that you have defined some awesome functions, how do you use them? Simply us
 
 ## Dyno disadvantages
 
-###### Third-party
+##### Third-party
 
 Using a third-party bot means a bunch of disadvantages. You have no control over them and you cannot make them add or modify commands, or change the avatar or logo. The new commands might lead to problems. They don't have true 24/7 uptime which is crucial for spam management.
 
-###### Slowmode
+##### Slowmode
 
 An annoying "A little quick here" message appears once you use the commands quickly. This is annoying when you want to purge messages or run a speedtest.
