@@ -174,5 +174,5 @@ An annoying "A little quick here" message appears once you use the commands quic
 Our bot features shorter commands but more context. Here you can see the comparison between server information commands for Dyno and TA Bot:
 
 Feature | Dyno | TA Bot
-:=====: | :==: | :====:
+:-----: | :--: | :----:
 Avatar  | ✓ | ✓
