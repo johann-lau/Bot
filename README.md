@@ -175,4 +175,11 @@ Our bot features shorter commands but more context. Here you can see the compari
 
 Feature | Dyno | TA Bot
 :-----: | :--: | :----:
-Avatar  | ✓ | ✓
+Icon  | ✓ | ✓
+Name  | ✓ | ✓
+Created at  | ✓ | ✓
+Creator  | ✓ | ✓
+Voice Region  | ✓ | ✓
+Icon  | ✓ | ✓
+Text Channels |  | ✓
+Voice Channels |  | ✓
