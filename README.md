@@ -155,10 +155,14 @@ Now that you have defined some awesome functions, how do you use them? Simply us
 
 ## Dyno disadvantages
 
-##### Third-party
+#### Hosting problems
+
+Dyno is slower in speed (often 200~450 ms) while Tunnelers' Bot is quick (80~200 ms) when hosted. Even if TA bot is locally hosted it still gives ~300 ms speed. This is mainly because it is in a single server and doesn't have to deal with many simultaneous commands.
+
+#### Third-party
 
 Using a third-party bot means a bunch of disadvantages. You have no control over them and you cannot make them add or modify commands, or change the avatar or logo. The new commands might lead to problems. They don't have true 24/7 uptime which is crucial for spam management.
 
-##### Slowmode
+#### Slowmode
 
 An annoying "A little quick here" message appears once you use the commands quickly. This is annoying when you want to purge messages or run a speedtest.
