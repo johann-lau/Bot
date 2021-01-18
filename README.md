@@ -177,9 +177,25 @@ Feature | Dyno | TA Bot
 :-----: | :--: | :----:
 Icon  | ✓ | ✓
 Name  | ✓ | ✓
+Description  |  | ✓
 Created at  | ✓ | ✓
 Creator  | ✓ | ✓
+ID  | ✓ | ✓
 Voice Region  | ✓ | ✓
 Icon  | ✓ | ✓
+Categories | ✓ | ✓
 Text Channels |  | ✓
 Voice Channels |  | ✓
+Roles | ✓ | ✓
+Members |  | ✓
+Max. bitrate |  | ✓
+Max. filesize |  | ✓
+Max. emojis |  | ✓
+2FA for Moderation |  | ✓
+Verification Level |  | ✓
+Explict Content Filter |  | ✓
+AFK Timeout |  | ✓
+AFK Channel |  | ✓
+Emojis |  | ✓
+Community |  | ✓
+Welcome Screen |  | ✓
