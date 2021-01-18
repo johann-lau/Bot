@@ -157,7 +157,7 @@ Now that you have defined some awesome functions, how do you use them? Simply us
 
 #### Hosting problems
 
-Dyno is slower in speed (often 200~450 ms) while Tunnelers' Bot is quick (80~200 ms) when hosted. Even if TA bot is locally hosted it still gives ~300 ms speed. This is mainly because it is in a single server and doesn't have to deal with many simultaneous commands.
+Dyno is slower in speed (often 200\~450 ms) while Tunnelers' Bot is quick (80\~200 ms) when hosted. Even if TA bot is locally hosted it still gives \~300 ms speed. This is mainly because it is in a single server and doesn't have to deal with many simultaneous commands.
 
 #### Third-party
 
