@@ -205,7 +205,7 @@ Feature | Dyno | TA Bot
 :-----: | :--: | :----:
 Avatar | ✓ | ✓
 Name | ✓ | ✓
-Descriminator |  | ✓
+Discriminator | ✓ | ✓
 Registered at | (✓) | ✓
 Joined at | (✓) | ✓
 ID | ✓ | ✓
