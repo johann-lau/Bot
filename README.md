@@ -161,7 +161,7 @@ Dyno is slower in speed (often 200\~450 ms) while Tunnelers' Bot is quick (80\~2
 
 #### Third-party
 
-Using a third-party bot means a bunch of disadvantages. You have no control over them and you cannot make them add or modify commands, or change the avatar or logo. The new commands might lead to problems. They don't have true 24/7 uptime which is crucial for spam management.
+Using a third-party bot means a bunch of disadvantages. You have no control over them and you cannot make them add or modify commands, or change the avatar or logo. The new commands might lead to problems. They don't have true 24/7 uptime which is crucial for spam management. Getting the bost independently hosted for a single server solves all these problems.
 
 #### Slowmode
 
