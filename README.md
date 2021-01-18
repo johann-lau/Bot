@@ -169,20 +169,19 @@ Using a third-party bot means a bunch of disadvantages. You have no control over
 
 An annoying "A little quick here" message appears once you use the commands quickly. This is annoying when you want to purge messages or run a speedtest.
 
-#### Longer commands
+#### Better commands
 
 Our bot features shorter commands but more context. Here you can see the comparison between server information commands for Dyno and TA Bot:
 
 Feature | Dyno | TA Bot
 :-----: | :--: | :----:
-Icon  | ✓ | ✓
-Name  | ✓ | ✓
-Description  |  | ✓
-Created at  | ✓ | ✓
-Creator  | ✓ | ✓
-ID  | ✓ | ✓
+Icon | ✓ | ✓
+Name | ✓ | ✓
+Description |  | ✓
+Created at | (✓) | ✓
+Creator | ✓ | ✓
+ID | ✓ | ✓
 Voice Region  | ✓ | ✓
-Icon  | ✓ | ✓
 Categories | ✓ | ✓
 Text Channels |  | ✓
 Voice Channels |  | ✓
@@ -199,3 +198,21 @@ AFK Channel |  | ✓
 Emojis |  | ✓
 Community |  | ✓
 Welcome Screen |  | ✓
+
+Not convinced? Another comparison between user information commands:
+
+Feature | Dyno | TA Bot
+:-----: | :--: | :----:
+Avatar | ✓ | ✓
+Name | ✓ | ✓
+Descriminator |  | ✓
+Registered at | (✓) | ✓
+Joined at | ✓ | ✓
+ID | ✓ | ✓
+Human/Bot |  | ✓
+Server Permissions |  | ✓
+Channel Permissions |  | ✓
+Status/Game |  | ✓
+Roles | ✓ | ✓
+
+Brackets between the tick means that the information is not accurate.
