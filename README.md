@@ -92,7 +92,13 @@ There are certain character limits:
 
 ### Math help
 
-For technics: Any Python function in the math module or default is available.
+For technics: Any Python function in the math, numpy, random or default module is available.
+
+From | Import as
+:--: | :-------:
+Math | N/A
+Numpy| np
+Random | ra
 
 #### Basic Arithmetic
 
