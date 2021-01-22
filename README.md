@@ -159,6 +159,22 @@ For example, to define a function that adds two numbers together, use `=define a
 
 Now that you have defined some awesome functions, how do you use them? Simply use `=calc {function name}({arguments})`. To use the example add function, use `=calc add(1,2)` and you get 3.
 
+### Apple Engrave Help
+
+Use `=engrave {product name} {text}` to engrave text on a desired product. Here is a list of products and their respective colors:
+
+Category |    Product    | Default Only | (Space) Gray | Silver | Gold(en) | Rose Gold | Red | Pink | Green | Blue | Sky Blue
+:------: |    :-----:    | :----------: | :----------: | :----: | :------: |           | :-: | :--: | :---: | :--: | :------:
+ Airpods |    Airpods    |      ✓       |              |        |          |           |     |      |       |      | 
+         |   Airpods Pro |      ✓       |              |        |          |           |     |      |       |      | 
+         |   Airpods Max |              |      ✓       |    ✓   |          |           |     |  ✓   |   ✓   |  ✓   | 
+  iPad   |      iPad     |              |      ✓       |    ✓   |    ✓     |           |     |      |       |      | 
+         |    iPad Pro   |              |      ✓       |    ✓   |          |           |     |      |       |      | 
+         |    iPad Air   |              |      ✓       |    ✓   |          |     ✓     |     |      |   ✓   |      |    ✓
+         |    iPad Mini  |              |      ✓       |    ✓   |    ✓     |           |     |      |       |      | 
+ Others  |  iPod (Touch) |              |      ✓       |    ✓   |    ✓     |           |  ✓  |  ✓   |       |  ✓   | 
+         |    Pencil     |      ✓       |              |        |          |           |     |      |       |      | 
+
 ## Dyno disadvantages
 
 Ever wanted to use Dyno to replace Tunnelers' Bot? Before you made your decision…
