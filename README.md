@@ -164,7 +164,7 @@ Now that you have defined some awesome functions, how do you use them? Simply us
 Use `=engrave {product name} {text}` to engrave text on a desired product. Here is a list of products and their respective colors:
 
 |Category |    Product    | Default Only | (Space) Gray | Silver | Gold(en) | Rose Gold | Red | Pink | Green | Blue | Sky Blue|
-|:------: |    :-----:    | :----------: | :----------: | :----: | :------: |           | :-: | :--: | :---: | :--: | :------:|
+|:------: |    :-----:    | :----------: | :----------: | :----: | :------: | :-------: | :-: | :--: | :---: | :--: | :------:|
 | Airpods |    Airpods    |      ✓       |              |        |          |           |     |      |       |      |         |
 |         |   Airpods Pro |      ✓       |              |        |          |           |     |      |       |      |         |
 |         |   Airpods Max |              |      ✓       |    ✓   |          |           |     |  ✓   |   ✓   |  ✓   |         |
