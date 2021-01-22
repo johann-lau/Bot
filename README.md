@@ -42,10 +42,14 @@
 # Discord
 
 **spam [Number of times to spam] [Text to spam]** Spams the text. It must be less than 30 times and without any mentions.
+
 **embed [Arguments]** Generates an embed. One line for each argument. Please check [here](https://github.com/johann-lau/Bot#embed-message-help) for more information.
+
 **pretend [User Name, Nickname, ID or Mention] [Text]** Pretends as a user and send something, using the magic of webhooks.
+
 **pretendembed [Arguments]** Pretends as a user and generates an embed. One line for each argument.
 Please check [here](https://github.com/johann-lau/Bot#embed-message-help) for more information.
+
 **pretendspam [User Name, Nickname, ID or Mention] [Text]** Pretends as a user and spams the text. It must be less than 30 times and without any mentions.
 
 # Text Manipulation
