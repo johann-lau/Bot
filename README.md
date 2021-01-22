@@ -1,7 +1,7 @@
 # Bot Documentation
 ## Commands
 
-# Tunnelers' Abyss
+### Tunnelers' Abyss
 
 **admins** Show admins of the server. **Alias:** `=administrators`
 
@@ -11,7 +11,7 @@
 
 **tttl** Shows information about [Tunneler's Train Transist Limited](https://h2mm.gitlab.io/web/rail.html).
 
-# Basic Commands
+### Basic Commands
 
 **help {Command or Category}** Show the help for a specific command/category. The command/category is optional.
 
@@ -19,7 +19,7 @@
 
 **speedtest** Does the `ping` command 5 times, thus more accurate.
 
-# Discord Information
+### Discord Information
 
 **server** Shows information about the current server.
 
@@ -39,7 +39,7 @@
 
 **template [Template ID]** Shows information about the desired server template. This command is still in BETA.
 
-# Discord
+### Discord
 
 **spam [Number of times to spam] [Text to spam]** Spams the text. It must be less than 30 times and without any mentions.
 
@@ -52,7 +52,7 @@ Please check [here](https://github.com/johann-lau/Bot#embed-message-help) for mo
 
 **pretendspam [User Name, Nickname, ID or Mention] [Text]** Pretends as a user and spams the text. It must be less than 30 times and without any mentions.
 
-# Text Manipulation
+### Text Manipulation
 
 **insert [Emoji] [Text]** Replaces the spaces in the text with emojis. Protip: also works with multiple emojis by wrapping all emojis in quotation marks. E.g. `=insert ":thumbsup: :heart:" I love this bot!`
 
@@ -64,13 +64,13 @@ Please check [here](https://github.com/johann-lau/Bot#embed-message-help) for mo
 
 **emoji [Text]** Generates emoji text. Supported characters: `A-Z a-z 0-9 ! ? $ # * + - × ÷`
 
-# Moderation
+### Moderation
 
 **kick [User Name, Nickname, ID or Mention] {Reason}** Kicks a desired user. The Reason is optional.
 
 **ban [User Name, Nickname, ID or Mention] {Reason}** Bans a desired user. The Reason is optional.
 
-# Information
+### Information
 
 **math [Formula]** Does boring math for you. Logical comparisons, scientific math, variables and user-defined functions are available. Please check [here](https://github.com/johann-lau/Bot/blob/main/README.md#math-help) for more information.
 
@@ -85,7 +85,7 @@ Starts a timer. Use `s` (seconds), `m` (minutes), `h` (hours), `d` (days) and `w
 
 **timer [Seconds] {Text}** Starts a timer. The Text is optional. **Alert: This command is outdated. Consider using** `rtimer` **instead.**
 
-# Web and Developer
+### Web and Developer
 
 **screenshot [URL]** Screenshots the desired webpage. A regular-sized screenshot and a whole-webpage-sized screenshot will be shown.
 
