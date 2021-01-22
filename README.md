@@ -165,15 +165,15 @@ Use `=engrave {product name} {text}` to engrave text on a desired product. Here 
 
 Category |    Product    | Default Only | (Space) Gray | Silver | Gold(en) | Rose Gold | Red | Pink | Green | Blue | Sky Blue
 :------: |    :-----:    | :----------: | :----------: | :----: | :------: |           | :-: | :--: | :---: | :--: | :------:
- Airpods |    Airpods    |      ✓       |              |        |          |           |     |      |       |      | 
-         |   Airpods Pro |      ✓       |              |        |          |           |     |      |       |      | 
-         |   Airpods Max |              |      ✓       |    ✓   |          |           |     |  ✓   |   ✓   |  ✓   | 
-  iPad   |      iPad     |              |      ✓       |    ✓   |    ✓     |           |     |      |       |      | 
-         |    iPad Pro   |              |      ✓       |    ✓   |          |           |     |      |       |      | 
+ Airpods |    Airpods    |      ✓       |              |        |          |           |     |      |       |      |         
+         |   Airpods Pro |      ✓       |              |        |          |           |     |      |       |      |         
+         |   Airpods Max |              |      ✓       |    ✓   |          |           |     |  ✓   |   ✓   |  ✓   |         
+  iPad   |      iPad     |              |      ✓       |    ✓   |    ✓     |           |     |      |       |      |         
+         |    iPad Pro   |              |      ✓       |    ✓   |          |           |     |      |       |      |         
          |    iPad Air   |              |      ✓       |    ✓   |          |     ✓     |     |      |   ✓   |      |    ✓
-         |    iPad Mini  |              |      ✓       |    ✓   |    ✓     |           |     |      |       |      | 
- Others  |  iPod (Touch) |              |      ✓       |    ✓   |    ✓     |           |  ✓  |  ✓   |       |  ✓   | 
-         |    Pencil     |      ✓       |              |        |          |           |     |      |       |      | 
+         |    iPad Mini  |              |      ✓       |    ✓   |    ✓     |           |     |      |       |      |         
+ Others  |  iPod (Touch) |              |      ✓       |    ✓   |    ✓     |           |  ✓  |  ✓   |       |  ✓   |         
+         |    Pencil     |      ✓       |              |        |          |           |     |      |       |      |         
 
 ## Dyno disadvantages
 
