@@ -1,41 +1,124 @@
 # Bot Documentation
 ## Commands
-### Regular Commands
-**help** Shows a help message.
 
-**insert {Emoji} {Text}** Inserts the emoji every word, just 👍 like 👍 this 👍 one.
+# Tunnelers' Abyss
 
-**spoiler {Text}** Adds a spoiler for every character of the text.
+**admins**
+Show admins of the server.
+**Alias:** `=administrators`
+**mods**
+Show mods of the server.
+**Alias:** `=moderators`
+**gsmrl**
+Shows information about [Grapeyard Superb Metro Rail Line](https://h2mm.gitlab.io/web/rail.html).
+**tttl**
+Shows information about [Tunneler's Train Transist Limited](https://h2mm.gitlab.io/web/rail.html).
+  """
+  elif cat=="basic" or cat=="simple" or cat=="normal" or cat=="regular" or cat=="core":
+    ti="Basic Commands"
+    desc="""
+**help {Command or Category}**
+Show the help for a specific command/category. The command/category is optional.
+**ping**
+Checks the speed of the bot.
+**speedtest**
+Does the `ping` command 5 times, thus more accurate.
 
-**reverse {Text}** Reverses the text.
+# Discord Information
 
-**color {R G B} or {hex} or {decimal}** Searches for information about the color. Alias: `colour`
+**server**
+Shows information about the current server.
+**role [Role ID or Mention]**
+Shows information about the desired role.
+**channel {Channel Name or ID}**
+Shows information about the desired channel.
+**voicechannel [Channel Name or ID]**
+Shows information about the desired Voice Channel.
+**user [User Name, Nickname, ID or Mention] [Channel Name, ID or Mention]**
+Shows information about the desired User in a specific channel.
+The arguments are optional.
+**uservoice [User Name, Nickname, ID or Mention] [Channel Name or ID]**
+Shows information about the desired User in a specific voice channel.
+**avatar {User Name, Nickname, ID or Mention}**
+Shows the avatar of the desired user.
+**voicechannel [Invite link or ID]**
+Shows information about the desired invite link.
+**template [Template ID]**
+Shows information about the desired server template.
+This command is still in BETA.
 
-**pretend {User} {Text}** Pretends as the user and talk.
+# Discord
 
-**spam {Times} {Text}** Spams the text for a number of times.
+**spam [Number of times to spam] [Text to spam]**
+Spams the text.
+It must be less than 30 times and without any mentions.
+**embed [Title] [Description] [Color] [Author] [Author URL] [Author Image URL] [Footer] [Thumbnail Image URL] [Image URL]…**
+Generates an embed.
+**One line for each argument.**
+Please check [here](https://github.com/johann-lau/Bot#embed-message-help) for more information.
+**pretend [User Name, Nickname, ID or Mention] [Text]**
+Pretends as a user and send something, using the magic of webhooks.
+**pretendembed [User Name, Nickname, ID or Mention] [Title] [Description] [Color] [Author] [Author URL] [Author Image URL] [Footer] [Thumbnail Image URL] [Image URL]…**
+Pretends as a user and generates an embed. One line for each argument.
+Please check [here](https://github.com/johann-lau/Bot#embed-message-help) for more information.
+**pretendspam [User Name, Nickname, ID or Mention] [Text]**
+Pretends as a user and spams the text.
+It must be less than 30 times and without any mentions.
 
-**embed {arguments}** Gives a custom embed. Please check [here](https://github.com/johann-lau/Bot/blob/main/README.md#embed-message-help).
+# Text Manipulation
 
-**embed {User} {arguments}** Pretends as a user and send a custom embed. Please check [here](https://github.com/johann-lau/Bot/blob/main/README.md#embed-message-help).
+**insert [Emoji] [Text]**
+Replaces the spaces in the text with emojis.
+Protip: also works with multiple emojis by wrapping all emojis in quotation marks. E.g. `=insert ":thumbsup: :heart:" I love this bot!`
+**spoiler [Text]**
+Generates an annoying spoiler.
+**rawspoiler [Text]**
+Generates an annoying spoiler for you to copy and paste.
+**reverse [Text]**
+sesrever the provided text.
+**emoji [Text]**
+Generates emoji text.
+Supported characters: A-Z a-z 0-9 ! ? $ # * + - × ÷
 
-**math {arguments}** Calculates a formula. Please check [here](https://github.com/johann-lau/Bot/blob/main/README.md#math-help).
+# Moderation
 
-### Tunnelers' Abyss
+**kick [User Name, Nickname, ID or Mention] {Reason}**
+Kicks a desired user. The Reason is optional.
+**ban [User Name, Nickname, ID or Mention] {Reason}**
+Bans a desired user. The Reason is optional.
 
-**admins** Lists all admins of the server.
+# Information
 
-**mods** Lists all moderators of the server.
+**math [Formula]**
+Does boring math for you. Logical comparisons, scientific math, variables and user-defined functions are available. Please check [here](https://github.com/johann-lau/Bot/blob/main/README.md#math-help) for more information.
+**define [name] [definition] [arguments separated by spaces]**
+Defines a custom function. Please check [here](https://github.com/johann-lau/Bot/blob/main/README.md#math-help) for more information.
+**time {Timezone}**
+Checks the time in your timezone. If Timezone is not specified, you will see the UTC time.
+**rtimer [Time to count] {Text}**
+Starts a timer. Please see the help command for more information.
+**terminate [Timer ID]**
+Properly terminates a running timer generated by `rtime`.
+The Timer ID is a random 5-alphabet code and can be found at the beginning of a timer.
+**timer [Seconds] {Text}**
+Starts a timer. The Text is optional.
+**Alert: This command is outdated. Consider using** `rtimer` **instead.**
 
-**gsmrl** View information about GSMRL.
+# Web and Developer
 
-**tttl** View information about TTTL.
-
-### Information Commands
-
-**time {timezone}** Shows the time in the timezone. Timezone can be a value between -14 and 14.
-
-**timer {seconds} {optional text}** Counts the specified number of seconds.
+**screenshot [URL]**
+Screenshots the desired webpage. A regular-sized screenshot and a whole-webpage-sized screenshot will be shown.
+**youtube [URL]**
+Downloads a youtube video and the captions. If the video size is larger than 8MB, only the captions will be uploaded.
+**wiki [Query]**
+Finds a related Wikipedia article.
+**engrave [Product] [Text]**
+Engraves the text on an Apple Product. Airpods, iPad, iPod and Apple Pencil are available. Please check [here](https://github.com/johann-lau/Bot/blob/main/README.md#apple-engrave-help) for more information.
+**ocr [Image]**
+Does an OCR scan for the image.
+**text [PDF]**
+Turns the PDF to plain text.
+  """
 
 ### Embed Message help
 For the `embed` command, please add 8 lines to your message, as follows.
