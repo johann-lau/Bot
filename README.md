@@ -154,11 +154,12 @@ There are certain character limits:
 
 ### Math help
 
-For technics: Any Python function in the math, numpy, random or default module is available.
+For technics: Any Python function in the math, cmath, numpy, random or default module is available.
 
 From | Import as
 :--: | :-------:
 Math | N/A
+Cmath | N/A
 Numpy| np
 Random | ra
 
