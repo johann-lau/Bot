@@ -308,6 +308,6 @@ Channel Permissions |  | ✓
 Status/Game |  | ✓
 Roles | ✓ | ✓
 
-Brackets between the tick means that the information is not accurate.
+Brackets between the tick means that the information is not accurate. For example, the time is not accurate to seconds.
 
 Of course, the commands doesn't stop here. TA Bot provides other commands (e.g. screenshot) which won't appear in **any other bot**. However, to make a conclusion, TA Bot stuffs everything possible from the library, while Dyno picks the most "important" ones only.
