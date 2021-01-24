@@ -238,6 +238,10 @@ Use `=engrave {product name} {text}` to engrave text on a desired product. Here 
 |  iPod (Touch) |              |      ✓       |    ✓   |    ✓     |           |  ✓  |  ✓   |       |    ✓     |
 |    Pencil     |      ✓       |              |        |          |           |     |      |       |          |
 
+The product name is composed of the product and the color. For any product with only default color, the color shall be omitted. If the color is omitted on another product, it will be space gray by default.
+
+Space gray can be aliased as gray; Gray can be aliased as grey; Rose gold can be aliased as rose; Gold can be aliased as golden; Sky blue can be aliased as blue.
+
 ## Dyno disadvantages
 
 Ever wanted to use Dyno to replace Tunnelers' Bot? Before you made your decision…
