@@ -1,16 +1,6 @@
 # Bot Documentation
 ## Commands
 
-### Tunnelers' Abyss
-
-**admins** Show admins of the server. **Alias:** `=administrators`
-
-**mods** Show mods of the server. **Alias:** `=moderators`
-
-**gsmrl** Shows information about [Grapeyard Superb Metro Rail Line](https://h2mm.gitlab.io/web/rail.html).
-
-**tttl** Shows information about [Tunneler's Train Transist Limited](https://h2mm.gitlab.io/web/rail.html).
-
 ### Basic Commands
 
 **help {Command or Category}** Show the help for a specific command/category. The command/category is optional.
