@@ -5,6 +5,8 @@
 
 **help {Command or Category}** Show the help for a specific command/category. The command/category is optional.
 
+**invite** Invites the bot to your server.
+
 **ping** Checks the speed of the bot.
 
 **speedtest** Does the `ping` command 5 times, thus more accurate.
@@ -141,6 +143,20 @@ There are certain character limits:
 - A field's name is limited to 256 characters and its description to 1024 characters
 - The footer text is limited to 2048 characters
 - The author name is limited to 256 characters
+- The entire embed is limited to 6000 characters
+
+### Python Help
+
+Who doesn't like running Python scripts without leaving Discord? That's why we introduced our Python command. Use our python command to execute any code and see its result.
+
+To avoid spamming, the result is truncated to a maximum of 10 lines. In addition, only selected modules can be imported.
+
+If you participate in any of the following activities, you will be banned from using the bot.
+
+- Illegal activities
+- Hosting cloud services, e.g. other Discord bots
+- Phishing
+- Attempt to bypass any rule, ToS or Community Guidelines
 
 ### Math help
 
