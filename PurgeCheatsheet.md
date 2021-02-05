@@ -11,7 +11,11 @@ While being versatile, the commmands have high demands on your knowlege. You nee
 ## Purgepy (Python) Cheatsheet
 
 Recommended article: [Full tutorial](https://discordpy.readthedocs.io/en/latest/api.html#message)
+
+
 |           To do this…             |                        Write this script.                        |
 |:---------------------------------:|:---––----------––-----------–----------––-----------–-----------:|
 | Purge messages from specific user |                   `msg.author.id == {User id}`                   |
 |     Purge messages with roles     | `msg.author.roles.count(await msg.guild.get_role({Role id}))==1` |
+
+Text
