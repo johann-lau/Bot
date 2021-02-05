@@ -26,12 +26,29 @@ When using the following cheatsheets, remember to replace values inside {Curly B
 |Purge messages from bots|`msg.author.bot`|
 |Purge messages from humans|`msg.author.bot==False`|
 |Purge messages from users with nickname|`msg.author.display_name=="{Nickname}"`|
+|Purge messages from users with nickname starting with something|`msg.author.display_name.startswith("{Something}")`|
+|Purge messages from users with nickname ending with something|`msg.author.display_name.endswith("{Something}")`|
+|Purge messages from users with nickname containing with something|`msg.author.display_name.count("{Something}")>0`|
 |Purge messages from users without any nicknames|`msg.author.nick==None`|
+
+### Message content
+| To do this…  |Write this script.|
+|    :---:     |     :---:        |
+|Purge messages with attachment(s)|`len(msg.attachments)>0`|
+|Purge messages with embed(s)|`len(msg.embeds)>0`|
+|Purge messages with sticker(s)|`len(msg.stickers)>0`|
+|Purge messages that mentions everyone|`msg.mention_everyone`|
+|Purge messages that mentions someone|`len(msg.mentions)>0`|
+|Purge messages that mentions at least 3 users|`len(msg.mentions)>=3`|
+|Purge messages that mentions exactly 5 users|`len(msg.mentions)==5`|
+|Purge messages that mentions a role|`len(msg.role_mentions)>0`|
+|Purge pinned messages|`msg.pinned`|
+
+
 
 ### Logic
 | To define this…  |Write this script.|
 |    :---:     |     :---:        |
 |Both statements are True|`{Statement 1} and {Statement 2}`|
 |At least one statement is True|`{Statement 1} or {Statement 2}`|
-|The opposite of a statement|`not {Statement}}`|
-
+|The opposite of a statement|`not {Statement}`|
