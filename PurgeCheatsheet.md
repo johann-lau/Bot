@@ -8,6 +8,23 @@ The bot has two versatile purging commands, `purgepy` and `purgeregex`, which al
 
 While being versatile, the commmands have high demands on your knowlege. You need to know how to write Python scripts or Regular Expression filters. **We recommend you to learn them, since you won't need to rely on this cheatsheet, and Python itself is useful for your life, too. However, if you just want quick reference, you can refer to this cheatsheet.**
 
+## Purgeregex (Regular Expression) Cheatsheet
+
+##### Used for complex rules that only defines the content of the message.
+
+### General knowlege
+
+| To match this…  |Write this regex.|
+|    :---:     |     :---:        |
+|The word 'hello'|`[\d\D]*hello[\d\D]*`|
+|The word 'hello' (but not case-sensitive)|`/[\d\D]*fuck[\d\D]*/i`|
+|Any alphabet between i and p |`[d\D]*[i-p][\d\D]*`|
+
+### Usage
+|A date in `DD-MM-YYYY` format<sup>[1](#myfootnote1)</sup>|`\d{2}\-\d{2}\-\d{4}`|
+
+<a name="myfootnote1">1</a>: Note that however, this will match invalid dates, such as 99-30-2030 or 29-2-2013.
+
 ## Purgepy (Python) Cheatsheet
 
 ##### Used for complex rules when regex cannot fullfill your requirements.
