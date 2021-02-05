@@ -1,12 +1,14 @@
-# Cheatsheet for Purgepy and Purgeregex commands
+# Purgepy and Purgeregex commands
 
 ## Introduction
 
 The bot has two versatile purging commands, `purgepy` and `purgeregex`, which allows you to setup complex rules when purging messages. No more worries while purging.
 
+This cheetsheet mainly aims at teaching regex/python newbies how to purge messages conveniently.
+
 ## Knowlege required
 
-While being versatile, the commmands have high demands on your knowlege. You need to know how to write Python scripts or Regular Expression filters. **We recommend you to learn them, since you won't need to rely on this cheatsheet, and Python itself is useful for your life, too. However, if you just want quick reference, you can refer to this cheatsheet.**
+While being versatile, the commmands have high demands on your knowlege. You need to know how to write Python scripts or Regular Expression filters. **We recommend you to learn them since you won't need to rely on this cheatsheet, and Python and Regex themselves are useful for your life, too. However, if you only want a quick reference, you can refer to this cheatsheet.**
 
 ## Purgeregex (Regular Expression) Cheatsheet
 
