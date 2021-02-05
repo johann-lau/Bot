@@ -16,12 +16,15 @@ While being versatile, the commmands have high demands on your knowlege. You nee
 
 | To match this…  |Write this regex.|
 |    :---:     |     :---:        |
+
+### Usage
+| To match this…  |Write this regex.|
+|    :---:     |     :---:        |
 |The word 'hello'|`[\d\D]*hello[\d\D]*`|
 |The word 'hello' (but not case-sensitive)|`/[\d\D]*fuck[\d\D]*/i`|
 |Any alphabet between i and p |`[d\D]*[i-p][\d\D]*`|
-
-### Usage
 |A date in `DD-MM-YYYY` format<sup>[1](#myfootnote1)</sup>|`\d{2}\-\d{2}\-\d{4}`|
+|The words 'bad', 'bed', 'bid', 'bod' or 'bud'|`b{a|e|i|o|u}d`|
 
 <a name="myfootnote1">1</a>: Note that however, this will match invalid dates, such as 99-30-2030 or 29-2-2013.
 
