@@ -12,10 +12,16 @@ While being versatile, the commmands have high demands on your knowlege. You nee
 
 ##### Used for complex rules that only defines the content of the message.
 
+Recommended article: [Regex Cheatsheets and tutorials](https://regexr.com) 
+
 ### General knowlege
 
 | To match this…  |Write this regex.|
 |    :---:     |     :---:        |
+|A digit| `\d`|
+|A digit| `\D`|
+|A whitespace| `\s`|
+|A whitespace| `\S`|
 
 ### Usage
 | To match this…  |Write this regex.|
@@ -32,7 +38,7 @@ While being versatile, the commmands have high demands on your knowlege. You nee
 
 ##### Used for complex rules when regex cannot fullfill your requirements.
 
-Recommended article: [Full tutorial](https://discordpy.readthedocs.io/en/latest/api.html#message) on discord.py module
+Recommended article: [Full tutorial on discord.py module](https://discordpy.readthedocs.io/en/latest/api.html#message)
 
 When using the following cheatsheets, remember to replace values inside {Curly Brackets} with their actual value! To copy something's ID, go to **User Settings › Appearance › Advanced › Developer Mode**. Then, right click on an object and select "Copy ID".
 
