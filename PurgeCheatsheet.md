@@ -19,9 +19,10 @@ Recommended article: [Regex Cheatsheets and tutorials](https://regexr.com)
 | To match this…  |Write this regex.|
 |    :---:     |     :---:        |
 |A digit| `\d`|
-|A digit| `\D`|
+|A non-digit| `\D`|
 |A whitespace| `\s`|
-|A whitespace| `\S`|
+|A non-whitespace| `\S`|
+|Anything| `[\s\S]`|
 
 ### Usage
 | To match this…  |Write this regex.|
