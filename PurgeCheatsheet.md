@@ -24,14 +24,17 @@ Recommended article: [Regex Cheatsheets and tutorials](https://regexr.com)
 |A non-digit| `\D`|
 |A whitespace| `\s`|
 |A non-whitespace| `\S`|
+|Any capital alphabet between A and S| `[A-S]`|
+|Any alphabet between A and S| `[A-Sa-s]`|
+|Any digit between 3 and 7| `[3-7]`|
+|Either 'hi' or 'hello' or 'world'| `[hi|hello|world]`|
 |Anything| `[\s\S]`|
 
 ### Usage
 | To match this…  |Write this regex.|
 |    :---:     |     :---:        |
 |The word 'hello'|`[\d\D]*hello[\d\D]*`|
-|The word 'hello' (but not case-sensitive)|`/[\d\D]*fuck[\d\D]*/i`|
-|Any alphabet between i and p |`[d\D]*[i-p][\d\D]*`|
+|The word 'hello' (but not case-sensitive)|`/[\d\D]*hello[\d\D]*/i`|
 |A date in `DD-MM-YYYY` format<sup>[1](#myfootnote1)</sup>|`\d{2}\-\d{2}\-\d{4}`|
 |The words 'bad', 'bed', 'bid', 'bod' or 'bud'|`b{a|e|i|o|u}d`|
 
