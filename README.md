@@ -125,6 +125,14 @@ Inline is false for at least one field
 
 ![IF](https://u.cubeupload.com/Johann/b16Screenshot20210108at.png)
 
+For very simple setup, use the `simpembed` or `simpleembed` command.
+
+```
+=simpembed Title
+Description
+```
+
+You may insert the three lines for fields, just as the `embed` command.
 
 #### Notes
 
