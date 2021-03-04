@@ -40,7 +40,7 @@ Recommended website: [Regex Cheatsheets and tutorials](https://regexr.com)
 |A date in `DD-MM-YYYY` format<sup>[1](#myfootnote1)</sup>|`\d{2}\-\d{2}\-\d{4}`|
 |The words 'bad', 'bed', 'bid', 'bod' or 'bud'|`b(a\|e\|i\|o\|u)d`|
 
-<a name="myfootnote1">1</a>: Note that however, this will match invalid dates, such as 99-30-2030 or 29-2-2013.
+<a name="myfootnote1">¹</a>: Note that however, this will match invalid dates, such as 99-30-2030 or 29-2-2013.
 
 ## Purgepy (Python) Cheatsheet
 
