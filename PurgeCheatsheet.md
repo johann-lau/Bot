@@ -37,10 +37,10 @@ Recommended website: [Regex Cheatsheets and tutorials](https://regexr.com)
 |    :---:     |     :---:        |
 |The word 'hello'|`[\d\D]*hello[\d\D]*`|
 |The word 'hello' (but not case-sensitive)|`/[\d\D]*hello[\d\D]*/i`|
-|A date in `DD-MM-YYYY` format<sup>[1](#myfootnote1)</sup>|`\d{2}\-\d{2}\-\d{4}`|
+|A date in `DD-MM-YYYY` format<sup>[1](#footnote1)</sup>|`\d{2}\-\d{2}\-\d{4}`|
 |The words 'bad', 'bed', 'bid', 'bod' or 'bud'|`b(a\|e\|i\|o\|u)d`|
 
-<a name="myfootnote1">¹</a>: Note that however, this will match invalid dates, such as 99-30-2030 or 29-2-2013.
+<a name="footnote1">¹</a>: Note that however, this will match invalid dates, such as 99-30-2030 or 29-2-2013.
 
 ## Purgepy (Python) Cheatsheet
 
@@ -50,7 +50,9 @@ Syntax: `=purgepy [Number of messages to purge] [Python script]`
 
 Recommended article: [Full tutorial on discord.py module](https://discordpy.readthedocs.io/en/latest/api.html#message)
 
-When using the following cheatsheets, remember to replace values inside {Curly Brackets} with their actual value! To copy something's ID, go to **User Settings › Appearance › Advanced › Developer Mode**. Then, right click on an object and select "Copy ID".
+When using the following cheatsheets, remember to replace values inside {Curly Brackets} with their actual value! To copy something's ID, go to **User Settings › Appearance › Advanced › Developer Mode** and enable the option. Then, right click an format<sup>[object](#objectfootnote)</sup> and select "Copy ID".
+
+<a name="objectfootnote">An "object" can be a role, user, server, channel, category, etc.</a>
 
 ### User and Roles
 
