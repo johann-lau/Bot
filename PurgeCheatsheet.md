@@ -14,6 +14,8 @@ While being versatile, the commmands have high demands on your knowlege. You nee
 
 ##### Used for complex rules that only defines the content of the message.
 
+Syntax: `=purgeregex [Number of messages to purge] [Regex]`
+
 Recommended website: [Regex Cheatsheets and tutorials](https://regexr.com) 
 
 ### General knowlege
@@ -43,6 +45,8 @@ Recommended website: [Regex Cheatsheets and tutorials](https://regexr.com)
 ## Purgepy (Python) Cheatsheet
 
 ##### Used for complex rules when regex cannot fullfill your requirements.
+
+Syntax: `=purgepy [Number of messages to purge] [Python script]`
 
 Recommended article: [Full tutorial on discord.py module](https://discordpy.readthedocs.io/en/latest/api.html#message)
 
