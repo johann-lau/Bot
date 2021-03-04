@@ -57,14 +57,14 @@ When using the following cheatsheets, remember to replace values inside {Curly B
 | To do this…  |Write this script.|
 |    :---:     |     :---:        |
 |Purge messages from specific user|`msg.author.id == {User id}`|
-|Purge messages from users with roles |`msg.author.roles.count(await msg.guild.get_role({Role id}))==1`|
+|Purge messages from users with role |`msg.author.roles.count(await msg.guild.get_role({Role id}))==1`|
 |Purge messages from users with discriminator|`msg.author.discriminator=="{Discriminator, e.g. 1234}"`|
 |Purge messages from bots|`msg.author.bot`|
 |Purge messages from humans|`msg.author.bot==False`|
 |Purge messages from users with nickname|`msg.author.display_name=="{Nickname}"`|
 |Purge messages from users with nickname starting with something|`msg.author.display_name.startswith("{Something}")`|
 |Purge messages from users with nickname ending with something|`msg.author.display_name.endswith("{Something}")`|
-|Purge messages from users with nickname containing with something|`msg.author.display_name.count("{Something}")>0`|
+|Purge messages from users with nickname containing something|`msg.author.display_name.count("{Something}")>0`|
 |Purge messages from users without any nicknames|`msg.author.nick==None`|
 
 ### Message content
