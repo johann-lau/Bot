@@ -103,6 +103,7 @@ Author
 Author URL
 Author Image Link
 Footer
+Footer Image Link
 Thumbnail Image Link
 Image Link
 ```
