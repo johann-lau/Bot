@@ -1,4 +1,9 @@
 # Bot Documentation
+
+## Monetizing
+
+Please help us support hosting fees by [watching an ad](http://evolterr.com/1aza) or directly [support me on Patreon](https://www.patreon.com/user?u=48151089&fan_landing=true).
+
 ## Commands
 
 ### Basic Commands
