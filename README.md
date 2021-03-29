@@ -97,7 +97,7 @@ Starts a timer. Use `s` (seconds), `m` (minutes), `h` (hours), `d` (days) and `w
 **text [PDF]** Turns the PDF to plain text.
 
 ### Embed Message help
-For the `embed` command, please add 8 lines to your message, as follows.
+For the `embed` command, please add 11 lines to your message, as follows.
 
 ```
 =embed Title of embed
