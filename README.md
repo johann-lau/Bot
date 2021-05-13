@@ -6,6 +6,8 @@ Please help us support hosting fees by [watching an ad](http://evolterr.com/1aza
 
 ## Commands
 
+**THIS PANEL IS OUTDATED. CONSIDER USING THE DISCORD `=help` COMMAND INSTEAD.**
+
 ### Basic Commands
 
 **help {Command or Category}** Show the help for a specific command/category. The command/category is optional.
@@ -37,8 +39,6 @@ Please help us support hosting fees by [watching an ad](http://evolterr.com/1aza
 **template [Template ID]** Shows information about the desired server template. This command is still in BETA.
 
 ### Discord
-
-**spam [Number of times to spam] [Text to spam]** Spams the text. It must be less than 30 times and without any mentions.
 
 **embed [Arguments]** Generates an embed. One line for each argument. Please check [here](https://github.com/johann-lau/Bot#embed-message-help) for more information.
 
