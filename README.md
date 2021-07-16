@@ -20,38 +20,62 @@ Support hosting fees by [watching an ad](http://evolterr.com/1aza) or directly [
 
 **speedtest** Does the `ping` command 5 times.
 
-**invite** Invites the bot to your server.
+**botpurge [Number of messages]** Purges messages from the bot. Note: the bot will check for the most recent messages and delete exactly as many messages as [number of messages].
 
 ### Discord Information
 
 **server** Shows information about the current server.
 
-**role [Role ID or Mention]** Shows information about the desired role.
+**invitelink [Invite link or ID]** Shows information about the invite link.
 
-**channel {Channel Name or ID}** Shows information about the desired channel.
+**role [Role ID or Mention]** Shows information about the role.
 
-**voicechannel [Channel Name or ID]** Shows information about the desired Voice Channel.
+**channel {Channel Name or ID}** Shows information about the channel.
 
-**user [User Name, Nickname, ID or Mention] [Channel Name, ID or Mention]** Shows information about the user in a specific channel. The arguments are optional.
+**voicechannel [Voice Channel Name or ID]** Shows information about the voice Channel.
 
-**uservoice [User Name, Nickname, ID or Mention] [Channel Name or ID]** Shows information about the user in a specific voice channel.
+**voicechannel [(Voice) Channel Name or ID]** Shows information about the text or voice Channel.
 
-**avatar {User Name, Nickname, ID or Mention}** Shows the avatar of the desired user.
+**user {User Name, Nickname, ID or Mention} {Channel Name, ID or Mention}** Shows information about the user. Specify the channel to show the permissions accurately.
 
-**invitelink [Invite link or ID]** Shows information about the desired invite link.
+**avatar {User Name, Nickname, ID or Mention}** Shows the avatar of a user.
 
-**reactions [Message link or ID]** Shows reactions of a message.
+**status {User Name, Nickname, ID or Mention}** Shows the status of a user.
 
-**template [Template ID]** Shows information about the desired server template. This command is still in BETA.
+**uservoice [User Name, Nickname, ID or Mention] [Voice Channel Name or ID]** Shows information about a user in the specific voice channel.
+
+**leftuser [User ID]** Shows information about a user who is not in the server.
+
+**message [Message Link or ID]** Shows information about a message.
+
+**raw [Message Link or ID]** Shows the content of a message. Does not work with embeds yet.
+
+**reactions [Message Link or ID]** Shows reactions of a message.
+
+**emojiinfo [Emoji Name, ID or Usage]** Shows information about an custom emoji.
+
+**template [Template ID]** Shows information about the server template. This command is still in BETA.
 
 ### Discord
 
-**embed [Arguments]** Generates an embed. One line for each argument. Please check [here](https://github.com/johann-lau/Bot#embed-message-help) for more information.
+**react [Message Link or ID] [Emoji Name, ID or Usage]** Temporarily reacts to the message with the custom emoji. Mostly used if you don't have nitro and would like to use an animated emoji.
+
+**snipe {Argument}** Fetches the 5 recently deleted message. Use `disable` or `enable` as the argument to toggle sniping.
+
+**clearsnipe** Clears the cache (information) of the snipe command.
 
 **pretend [User Name, Nickname, ID or Mention] [Text]** Pretends as a user and send something, using the magic of webhooks.
 
-**pretendembed [Arguments]** Pretends as a user and generates an embed. One line for each argument.
+**pretendembed [User Name, Nickname, ID or Mention] [Arguments]** Pretends as a user and generates an embed. One line for each argument.
 Please check [here](https://github.com/johann-lau/Bot#embed-message-help) for more information.
+
+**embed [Arguments]** Generates an embed. One line for each argument. Please check [here](https://github.com/johann-lau/Bot#embed-message-help) for more information.
+
+**editembed [Arguments]** Edits an embed previously sent with `=embed`. Please check [here](https://github.com/johann-lau/Bot#embed-message-help) for more information.
+
+**simpleembed [Title] {Description} {Image link} {field(s)}** A simplified version of `=embed`. One line for each argument. Use `{{{newline}}}` for a line break. For each field, 3 lines should be specified. The first is the title; the second is the description; the third is either `0` or `1` depending on whether you want inline or not. Additional information on embeds can be found [here](https://github.com/johann-lau/Bot#embed-message-help).
+
+**ett [Message Link or ID]** Turns the embed of the message to SuperBot form. Basically a reverse of `=embed`.
 
 ### Text Manipulation
 
@@ -69,19 +93,19 @@ Please check [here](https://github.com/johann-lau/Bot#embed-message-help) for mo
 
 ### Moderation
 
-**kick [User Name, Nickname, ID or Mention] {Reason}** Kicks the user. The Reason is optional.
+**kick [User Name, Nickname, ID or Mention] {Reason}** Kicks the user.
 
-**ban [User Name, Nickname, ID or Mention] {Reason}** Bans the user. The Reason is optional.
+**ban [User Name, Nickname, ID or Mention] {Reason}** Bans the user.
 
 **slowmode [Delay] {Channel mentions}** Sets the slowmode to the delay. If there are no channel mentions, it will set the slowmode of the current channel.
 
 **nick [New nickname]** Sets the nickname of the bot.
 
-**purge [Number of messages]** Purges some messages in the current channel.
+**purge [Number of messages]** Deletes messages in the current channel.
 
-**purgeregex [Number of messages] [Regex rule]** Purges messages as long as the message matches the regular expression rule. Note: the bot will check for the most recent messages and delete exactly as many messages as [number of messages]. Starter: `=purgeregex 5 [\s\S]*john[\s\S]*` will delete 5 latest messages with small letters "john".
+**purgeregex [Number of messages] [Regex rule]** Deletes messages as long as the message matches the regular expression rule. Note: the bot will check for the most recent messages and delete exactly as many messages as [number of messages]. Starter: `=purgeregex 5 [\s\S]*john[\s\S]*` will delete 5 latest messages with small letters "john".
 
-**purgepy [Number of messages] [Python boolean]** Purges messages as long as the message returns true in the python function. Note: the bot will check for the most recent messages and delete exactly as many messages as [number of messages]. Starter: `=purgepy 5 msg.author.id==123456789012345678` will delete 5 latest messages sent by someone with that user ID.
+**purgepy [Number of messages] [Python boolean]** Deletes messages as long as the message returns true in the python function. Note: the bot will check for the most recent messages and delete exactly as many messages as [number of messages]. Starter: `=purgepy 5 msg.author.id==123456789012345678` will delete 5 latest messages sent by someone with that user ID.
 
 **purgepygex [Number of messages] [Regex rule] [Python boolean]** Purges messages as long as the message matches the regular expression rule and returns true in the python function. Note: the bot will check for the most recent messages and delete exactly as many messages as [number of messages].
 
@@ -102,13 +126,13 @@ Please check [here](https://github.com/johann-lau/Bot#embed-message-help) for mo
 **time {Timezone}** Checks the time in your timezone. If Timezone is not specified, you will see the UTC time.
 
 **rtimer [Time to count] {Text}**
-Starts a timer. Use `s` (seconds), `m` (minutes), `h` (hours), `d` (days) and `w` (weeks). If you specify a unit twice (e.g. `10s5s`), the last one will be used and the others will be omitted. Default to seconds if no unit is specified. The Text is optional."
+Starts a timer. Use `s` (seconds), `m` (minutes), `h` (hours), `d` (days) and `w` (weeks). If you specify a unit twice (e.g. `10s5s`), the last one will be used and the others will be omitted. Default to seconds if no unit is specified.
 
 **terminate [Timer ID]** Properly terminates a running timer generated by `rtime`. The Timer ID is a random 5-alphabet code that can be found at the beginning of a timer.
 
 ### Web and Developer
 
-**screenshot [URL] {Size}** Screenshots the desired webpage. If you don't specify "short" or "full" in the "size" argument, both a regular screenshot and a full screenshot will be shown.
+**screenshot [URL] {Size}** Screenshots the webpage. If you don't specify "short" or "full" in the "size" argument, both a regular screenshot and a full screenshot will be shown.
 
 **youtube [URL]** Downloads a youtube video
 
@@ -267,7 +291,7 @@ Now that you have defined some awesome functions, how do you use them? Simply us
 
 ### Apple Engrave Help
 
-Use `=engrave {product name} {text}` to engrave text on a desired product. Here is a list of products and their respective colors:
+Use `=engrave {product name} {text}` to engrave text on a product. Here is a list of products and their respective colors:
 
 |    Product    | Default Only |  Space Gray  | Silver |   Gold   | Rose Gold | Red | Pink | Green | Sky Blue |
 |    :-----:    | :----------: | :----------: | :----: | :------: | :-------: | :-: | :--: | :---: | :------: |
