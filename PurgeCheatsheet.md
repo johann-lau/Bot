@@ -35,8 +35,8 @@ Recommended website: [Regex Cheatsheets and tutorials](https://regexr.com)
 ### Usage
 | To match this…  |Write this regex.|
 |    :---:     |     :---:        |
-|The word 'hello'|`[\d\D]*hello[\d\D]*`|
-|The word 'hello' (but not case-sensitive)|`/[\d\D]*hello[\d\D]*/i`|
+|The word 'hello'|`[\s\S]*hello[\s\S]*`|
+|The word 'hello' (but not case-sensitive)|`/[\s\S]*hello[\s\S]*/i`|
 |A date in `DD-MM-YYYY` format<sup>[1](#footnote1)</sup>|`\d{2}\-\d{2}\-\d{4}`|
 |The words 'bad', 'bed', 'bid', 'bod' or 'bud'|`b(a\|e\|i\|o\|u)d`|
 
@@ -44,7 +44,7 @@ Recommended website: [Regex Cheatsheets and tutorials](https://regexr.com)
 
 ## Purgepy (Python) Cheatsheet
 
-##### Used for complex rules when regex cannot fullfill your requirements.
+##### Used for complex rules when regex cannot satisfy your requirements.
 
 Syntax: `=purgepy [Number of messages to purge] [Python script]`
 
