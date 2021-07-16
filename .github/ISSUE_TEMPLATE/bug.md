@@ -1,12 +1,17 @@
 ---
 
 name: 🐛 Bug report
-about: Submit a report of a SuperiorBot bug.
+about: Submit a SuperBot bug report.
 ---
 
 # 🐛 Bug report
 
-What did you try when you encountered the bug? What happened ?
+Which command did you use?
+
+---
+expected: I expected this outcome
+actual: I actually saw this outcome
+---
 
 ## Additional Information
 
