@@ -75,13 +75,17 @@ Please check [here](https://github.com/johann-lau/Bot#embed-message-help) for mo
 
 **simpleembed [Title] {Description} {Image link} {field(s)}** A simplified version of `=embed`. One line for each argument. Use `{{{newline}}}` for a line break. For each field, 3 lines should be specified. The first is the title; the second is the description; the third is either `0` or `1` depending on whether you want inline or not. Additional information on embeds can be found [here](https://github.com/johann-lau/Bot#embed-message-help).
 
+**quickembed [Title] {Color} {Description}** The right command to use if you only only need a title, description and custom color. One line for title and color; as many lines for description.
+
 **ett [Message Link or ID]** Turns the embed of the message to SuperBot form. Basically a reverse of `=embed`.
 
 ### Text Manipulation
 
 **poll [Options] [Title]** Starts a poll with no automation (yet). E.g. `=poll Great👍 Bad👎 What do you think about this server?`
 
-**insert [Emoji] [Text]** Replaces the spaces in the text with emojis. Protip: also works with multiple emojis by wrapping all emojis in quotation marks. E.g. `=insert ":thumbsup: :heart:" I love this bot!` will return `I 👍 ❤️ love 👍 ❤️ this 👍 ❤️ bot!`
+**insert [Emoji] [Text]** Replaces the spaces in the text with emojis. Also works with multiple emojis by wrapping all emojis in quotation marks. E.g. `=insert ":thumbsup: :heart:" I love this bot!` will return `I 👍 ❤️ love 👍 ❤️ this 👍 ❤️ bot!`
+
+**unicode [Query]** Searches character(s) with their names matching the query.
 
 **spoiler [Text]** Generates an annoying spoiler.
 
