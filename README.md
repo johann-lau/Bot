@@ -87,6 +87,13 @@ Please check [here](https://github.com/johann-lau/Bot#embed-message-help) for mo
 
 ### Information
 
+**color**
+
+**simp(le)colo(u)r**
+![Available colo(u)rs](/simplecolor.jpeg)
+
+`translate` `calc` `define` `time` `rtimer` `terminate`
+
 **math [Formula]** Does boring math for you. Logical comparisons, scientific math, variables and user-defined functions are available. Please check [here](https://github.com/johann-lau/Bot/blob/main/README.md#math-help) for more information.
 
 **define [name] [definition] [arguments separated by spaces]** Defines a custom function. Please check [here](https://github.com/johann-lau/Bot/blob/main/README.md#math-help) for more information.
@@ -100,9 +107,9 @@ Starts a timer. Use `s` (seconds), `m` (minutes), `h` (hours), `d` (days) and `w
 
 ### Web and Developer
 
-**screenshot [URL]** Screenshots the desired webpage. A regular-sized screenshot and a whole-webpage-sized screenshot will be shown.
+**screenshot [URL] {Size}** Screenshots the desired webpage. If you don't specify "short" or "full" in the "size" argument, both a regular screenshot and a full screenshot will be shown.
 
-**youtube [URL]** Downloads a youtube video and the captions. If the video size is larger than 8MB, only the captions will be uploaded.
+**youtube [URL]** Downloads a youtube video
 
 **wiki [Query]** Finds a related Wikipedia article.
 
