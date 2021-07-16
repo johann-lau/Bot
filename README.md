@@ -79,6 +79,8 @@ Please check [here](https://github.com/johann-lau/Bot#embed-message-help) for mo
 
 ### Text Manipulation
 
+**poll [Options] [Title]** Starts a poll with no automation (yet). E.g. `=poll Great👍 Bad👎 What do you think about this server?`
+
 **insert [Emoji] [Text]** Replaces the spaces in the text with emojis. Protip: also works with multiple emojis by wrapping all emojis in quotation marks. E.g. `=insert ":thumbsup: :heart:" I love this bot!` will return `I 👍 ❤️ love 👍 ❤️ this 👍 ❤️ bot!`
 
 **spoiler [Text]** Generates an annoying spoiler.
@@ -93,21 +95,29 @@ Please check [here](https://github.com/johann-lau/Bot#embed-message-help) for mo
 
 ### Moderation
 
+**Most of these commands will not work if the relevant permissions are not granted to the bot.** Use `=user 796686363604680755` to check the granted permissions.
+
 **kick [User Name, Nickname, ID or Mention] {Reason}** Kicks the user.
 
 **ban [User Name, Nickname, ID or Mention] {Reason}** Bans the user.
 
-**slowmode [Delay] {Channel mentions}** Sets the slowmode to the delay. If there are no channel mentions, it will set the slowmode of the current channel.
+**ban [User ID] {Reason}** Unbans the user.
 
-**nick [New nickname]** Sets the nickname of the bot.
+**slowmode [Delay] {Channel mentions}** Sets the slowmode to the delay. If there are no channel mentions, it will set the slowmode of the current channel.
 
 **purge [Number of messages]** Deletes messages in the current channel.
 
-**purgeregex [Number of messages] [Regex rule]** Deletes messages as long as the message matches the regular expression rule. Note: the bot will check for the most recent messages and delete exactly as many messages as [number of messages]. Starter: `=purgeregex 5 [\s\S]*john[\s\S]*` will delete 5 latest messages with small letters "john".
+**purgeuser [Nubmer of messages] [User Name, Nickname, ID or Mention]** Deletes messages as long as the message returns true in the python function. Note: the bot will check for the most recent messages and delete exactly as many messages as [Number of messages].
 
-**purgepy [Number of messages] [Python boolean]** Deletes messages as long as the message returns true in the python function. Note: the bot will check for the most recent messages and delete exactly as many messages as [number of messages]. Starter: `=purgepy 5 msg.author.id==123456789012345678` will delete 5 latest messages sent by someone with that user ID.
+**purgeregex [Number of messages] [Regex rule]** Deletes messages as long as the message matches the regular expression rule. Note: the bot will check for the most recent messages and delete exactly as many messages as [Number of messages]. Starter: `=purgeregex 5 [\s\S]*john[\s\S]*` will delete 5 latest messages with small letters "john".
 
-**purgepygex [Number of messages] [Regex rule] [Python boolean]** Purges messages as long as the message matches the regular expression rule and returns true in the python function. Note: the bot will check for the most recent messages and delete exactly as many messages as [number of messages].
+**purgepy [Number of messages] [Python boolean]** Deletes messages as long as the message returns true in the python function. Note: the bot will check for the most recent messages and delete exactly as many messages as [Number of messages]. Starter: `=purgepy 5 msg.author.id==123456789012345678` will delete 5 latest messages sent by someone with that user ID.
+
+**purgepygex [Number of messages] [Regex rule] [Python boolean]** Purges messages as long as the message matches the regular expression rule and returns true in the python function. Note: the bot will check for the most recent messages and delete exactly as many messages as [Number of messages].
+
+**nick [New nickname]** Sets the nickname of the bot.
+
+**makeinvite [Time until expiration] {Max. uses}** Creates an invite. Use `s` (seconds), `m` (minutes), `h` (hours), `d` (days) and `w` (weeks) for [Time until expiration]. If you specify a unit twice (e.g. `10s5s`), the last one will be used and the others will be omitted. Default to seconds if no unit is specified. Use `0` for {Max. uses} to indicate that an infinite amount of users can join with the link.
 
 ### Information
 
@@ -119,30 +129,43 @@ Please check [here](https://github.com/johann-lau/Bot#embed-message-help) for mo
 
 **translate [Destination language] [Text]** Translate the text to the language.
 
-**calc [Formula]** Does boring math for you. Logical comparisons, scientific math, variables and user-defined functions are available. Please check [here](https://github.com/johann-lau/Bot/blob/main/README.md#math-help) for more information.
+**definition [Word]** Looks up the word in a dictionary.
 
-**define [name] [definition] [arguments separated by spaces]** Defines a custom function. Please check [here](https://github.com/johann-lau/Bot/blob/main/README.md#math-help) for more information.
+**calc [Equation]** Does boring math for you. Logical comparisons, scientific math, variables and user-defined functions are available. Please check [here](https://github.com/johann-lau/Bot/blob/main/README.md#math-help) for more information.
+
+**define [Name] [definition] [arguments separated by spaces]** Defines a custom function. Please check [here](https://github.com/johann-lau/Bot/blob/main/README.md#math-help) for more information.
 
 **time {Timezone}** Checks the time in your timezone. If Timezone is not specified, you will see the UTC time.
 
-**rtimer [Time to count] {Text}**
-Starts a timer. Use `s` (seconds), `m` (minutes), `h` (hours), `d` (days) and `w` (weeks). If you specify a unit twice (e.g. `10s5s`), the last one will be used and the others will be omitted. Default to seconds if no unit is specified.
+**rtimer [Time to count] {Text}** Starts a timer. Use `s` (seconds), `m` (minutes), `h` (hours), `d` (days) and `w` (weeks) for [Time to count]. If you specify a unit twice (e.g. `10s5s`), the last one will be used and the others will be omitted. Default to seconds if no unit is specified.
+
+**ttimer [Time to count] {Text}** Similar to `=rtimer`, but the timer is optimized for mobile users.
 
 **terminate [Timer ID]** Properly terminates a running timer generated by `rtime`. The Timer ID is a random 5-alphabet code that can be found at the beginning of a timer.
+
+**minecraft [Item]** Looks up an article in the Minecraft wiki.
 
 ### Web and Developer
 
 **screenshot [URL] {Size}** Screenshots the webpage. If you don't specify "short" or "full" in the "size" argument, both a regular screenshot and a full screenshot will be shown.
 
-**youtube [URL]** Downloads a youtube video
+**youtube [URL]** Downloads a youtube video.
 
-**wiki [Query]** Finds a related Wikipedia article.
+**wiki [Query]** Finds a Wikipedia article.
 
-**engrave [Product] [Text]** Engraves the text on an Apple Product. Airpods, iPad, iPod and Apple Pencil are available. Please check [here](https://github.com/johann-lau/Bot/blob/main/README.md#apple-engrave-help) for more information.
+**engrave [Product] [Text]** Engraves the text on an Apple Product. Airpods, iPad and more are available. Please check [here](https://github.com/johann-lau/Bot/blob/main/README.md#apple-engrave-help) for more information.
 
 **ocr [Image]** Does an OCR scan for the image.
 
 **text [PDF]** Turns the PDF to plain text.
+
+**html [Code]** Renders an HTML5 code snippet.
+
+**md [Code]** Renders a markdown code snippet.
+
+**regex [Origin] [Destination] [Text]** Substitutes regular expression matches in the text with the destination. Supports substitution flags (`\1` instead of `$1`)
+
+**regsub [Regex rule] [Text]** Looks for regular expression matches in the text.
 
 ### Embed Message help
 For the `embed` command, please add 11 lines to your message, as follows.
