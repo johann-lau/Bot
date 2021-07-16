@@ -1,7 +1,7 @@
 ---
 
 name: 🚀 Command Proposal
-about: Submit a proposal for a new command for SuperiorBot.
+about: Submit a proposal for a new command for SuperBot.
 ---
 
 # 🚀 Command Proposal
@@ -10,7 +10,7 @@ What would the command do? What would be the command's name?
 
 ## Motivation
 
-Why would you want this command?
+(Optional) How would this command be useful?
 
 ## Additional Information
 
