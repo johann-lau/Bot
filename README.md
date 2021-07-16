@@ -145,7 +145,7 @@ Please check [here](https://github.com/johann-lau/Bot#embed-message-help) for mo
 
 **minecraft [Item]** Looks up an article in the Minecraft wiki.
 
-### Web and Developer
+### Web
 
 **screenshot [URL] {Size}** Screenshots the webpage. If you don't specify "short" or "full" in the "size" argument, both a regular screenshot and a full screenshot will be shown.
 
@@ -154,6 +154,42 @@ Please check [here](https://github.com/johann-lau/Bot#embed-message-help) for mo
 **wiki [Query]** Finds a Wikipedia article.
 
 **engrave [Product] [Text]** Engraves the text on an Apple Product. Airpods, iPad and more are available. Please check [here](https://github.com/johann-lau/Bot/blob/main/README.md#apple-engrave-help) for more information.
+
+**covid [Country]**
+
+**population [Country]**
+
+### Plotting and Drawing
+
+**ascii [Text]** Renders an ASCII representation in three different fonts.
+
+**table [Header] [Footer] [Regular rows]** In the arguments, items should be separated with a comma (and no spaces). Regular rows should be separated with lines. To specify a style, add the style and three bars, before header in the first line.
+
+Styles: `markdown` `minimalist` `simple` `borderless` `ascii(borderless/box/compact/double/minimalist/simple)` `double(box/compact/thin_compact)` `thick(box/compact)` `thin (box/compact/double/thick/rounded/compact_rounded/double_rounded/thick_rounded)`
+
+Values in brackets are optional sub-styles. Add an underscore between the parent style and sub-style, e.g. `ascii_borderless`. Example usage:
+
+```
+=table double_box|||Name,Price,Units,Total
+,,,3200
+Soda,1,300,300
+Pizza,12,200,2400
+Steak,25,20,500
+```
+
+**render [Upload an image]** Can you imagine that? Convert an image to a txt file.
+
+**captcha [Text]** SuperBot can't solve what he made himself 😀
+
+**pie/barv/barh [Numbers] [Labels] [Title]** Plots a pie chart, vertical bar chart or horizontal bar chart. Separate the numbers and labels with commas. E.g. `=pie/barv/barh 1,2,3 Small,Medium,Large Some random numbers`
+
+**hist [Numbers] [Title]** Plots a histogram. Separate the numbers with commas. E.g. `=hist 1,2,1,1,2,3 Some random numbers`
+
+**snow [Recursion]** Plots a Koch Snowflake. Specify a recursion between 0 and 10 (inclusive).
+
+**mandelbrot** Plots a Mandelbrot set.
+
+### Developer and Miscellaneous
 
 **ocr [Image]** Does an OCR scan for the image.
 
