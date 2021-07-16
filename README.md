@@ -87,14 +87,15 @@ Please check [here](https://github.com/johann-lau/Bot#embed-message-help) for mo
 
 ### Information
 
-**color**
+**colo(u)r [3 RGB values, 1 hex code or 1 decimal value]** Convert between colour formats. If you want to explicitly specify a hex code instead of a decimal value, add a hash `#` before the value. E.g. `=color 255 0 0`, `=color #ff0000` or `=color 16711680`
 
-**simp(le)colo(u)r**
-![Available colo(u)rs](/simplecolor.jpeg)
+**simp(le)colo(u)r [Name of color/gradient]** View beautiful colours or gradients.
 
-`translate` `calc` `define` `time` `rtimer` `terminate`
+![Available colo(u)rs](/Colours001.jpeg)
 
-**math [Formula]** Does boring math for you. Logical comparisons, scientific math, variables and user-defined functions are available. Please check [here](https://github.com/johann-lau/Bot/blob/main/README.md#math-help) for more information.
+**translate [Destination language] [Text]** Translate the text to the language.
+
+**calc [Formula]** Does boring math for you. Logical comparisons, scientific math, variables and user-defined functions are available. Please check [here](https://github.com/johann-lau/Bot/blob/main/README.md#math-help) for more information.
 
 **define [name] [definition] [arguments separated by spaces]** Defines a custom function. Please check [here](https://github.com/johann-lau/Bot/blob/main/README.md#math-help) for more information.
 
