@@ -1,22 +1,26 @@
 # Bot Documentation
 
-## Monetizing
+## General description
 
-Please help us support hosting fees by [watching an ad](http://evolterr.com/1aza) or directly [support me on Patreon](https://www.patreon.com/user?u=48151089&fan_landing=true).
+SuperBot is a non-profit Discord bot. The purpose of creating the bot is to literally provide service to users. There are no premium plans, forced advertising or command cooldown. Computer resources are limited, please do not spam commands to allow others to access commands quickly.
+
+Support hosting fees by [watching an ad](http://evolterr.com/1aza) or directly [support me on Patreon](https://www.patreon.com/user?u=48151089&fan_landing=true).
 
 ## Commands
 
-**THIS PANEL IS OUTDATED. CONSIDER USING THE DISCORD `=help` COMMAND INSTEAD.**
-
 ### Basic Commands
 
-**help {Command or Category}** Show the help for a specific command/category. The command/category is optional.
+**help {Command or Category}** Show a list of all commands.
 
 **invite** Invites the bot to your server.
 
+**prefix** Just in case you don't know the prefix of the bot (`=`), you can use @SuperBot as a prefix.
+
 **ping** Checks the speed of the bot.
 
-**speedtest** Does the `ping` command 5 times, thus more accurate.
+**speedtest** Does the `ping` command 5 times.
+
+**invite** Invites the bot to your server.
 
 ### Discord Information
 
@@ -28,13 +32,15 @@ Please help us support hosting fees by [watching an ad](http://evolterr.com/1aza
 
 **voicechannel [Channel Name or ID]** Shows information about the desired Voice Channel.
 
-**user [User Name, Nickname, ID or Mention] [Channel Name, ID or Mention]** Shows information about the desired User in a specific channel. The arguments are optional.
+**user [User Name, Nickname, ID or Mention] [Channel Name, ID or Mention]** Shows information about the user in a specific channel. The arguments are optional.
 
-**uservoice [User Name, Nickname, ID or Mention] [Channel Name or ID]** Shows information about the desired User in a specific voice channel.
+**uservoice [User Name, Nickname, ID or Mention] [Channel Name or ID]** Shows information about the user in a specific voice channel.
 
 **avatar {User Name, Nickname, ID or Mention}** Shows the avatar of the desired user.
 
-**voicechannel [Invite link or ID]** Shows information about the desired invite link.
+**invitelink [Invite link or ID]** Shows information about the desired invite link.
+
+**reactions [Message link or ID]** Shows reactions of a message.
 
 **template [Template ID]** Shows information about the desired server template. This command is still in BETA.
 
@@ -47,25 +53,37 @@ Please help us support hosting fees by [watching an ad](http://evolterr.com/1aza
 **pretendembed [Arguments]** Pretends as a user and generates an embed. One line for each argument.
 Please check [here](https://github.com/johann-lau/Bot#embed-message-help) for more information.
 
-**pretendspam [User Name, Nickname, ID or Mention] [Text]** Pretends as a user and spams the text. It must be less than 30 times and without any mentions.
-
 ### Text Manipulation
 
-**insert [Emoji] [Text]** Replaces the spaces in the text with emojis. Protip: also works with multiple emojis by wrapping all emojis in quotation marks. E.g. `=insert ":thumbsup: :heart:" I love this bot!`
+**insert [Emoji] [Text]** Replaces the spaces in the text with emojis. Protip: also works with multiple emojis by wrapping all emojis in quotation marks. E.g. `=insert ":thumbsup: :heart:" I love this bot!` will return `I 👍 ❤️ love 👍 ❤️ this 👍 ❤️ bot!`
 
 **spoiler [Text]** Generates an annoying spoiler.
 
 **rawspoiler [Text]** Generates an annoying spoiler for you to copy and paste.
 
-**reverse [Text]** sesrever the provided text.
+**rawrawspoiler [Text]** Similar to `rawspoiler`, but the recursion depth is 2 instead of 1.
+
+**reverse [Text]** sesrever the provided text. E.g. `=reverse nggyu nglyd` will return `dylgn uyggn`.
 
 **emoji [Text]** Generates emoji text. Supported characters: `A-Z a-z 0-9 ! ? $ # * + - × ÷`
 
 ### Moderation
 
-**kick [User Name, Nickname, ID or Mention] {Reason}** Kicks a desired user. The Reason is optional.
+**kick [User Name, Nickname, ID or Mention] {Reason}** Kicks the user. The Reason is optional.
 
-**ban [User Name, Nickname, ID or Mention] {Reason}** Bans a desired user. The Reason is optional.
+**ban [User Name, Nickname, ID or Mention] {Reason}** Bans the user. The Reason is optional.
+
+**slowmode [Delay] {Channel mentions}** Sets the slowmode to the delay. If there are no channel mentions, it will set the slowmode of the current channel.
+
+**nick [New nickname]** Sets the nickname of the bot.
+
+**purge [Number of messages]** Purges some messages in the current channel.
+
+**purgeregex [Number of messages] [Regex rule]** Purges messages as long as the message matches the regular expression rule. Note: the bot will check for the most recent messages and delete exactly as many messages as [number of messages]. Starter: `=purgeregex 5 [\s\S]*john[\s\S]*` will delete 5 latest messages with small letters "john".
+
+**purgepy [Number of messages] [Python boolean]** Purges messages as long as the message returns true in the python function. Note: the bot will check for the most recent messages and delete exactly as many messages as [number of messages]. Starter: `=purgepy 5 msg.author.id==123456789012345678` will delete 5 latest messages sent by someone with that user ID.
+
+**purgepygex [Number of messages] [Regex rule] [Python boolean]** Purges messages as long as the message matches the regular expression rule and returns true in the python function. Note: the bot will check for the most recent messages and delete exactly as many messages as [number of messages].
 
 ### Information
 
@@ -76,11 +94,9 @@ Please check [here](https://github.com/johann-lau/Bot#embed-message-help) for mo
 **time {Timezone}** Checks the time in your timezone. If Timezone is not specified, you will see the UTC time.
 
 **rtimer [Time to count] {Text}**
-Starts a timer. Use `s` (seconds), `m` (minutes), `h` (hours), `d` (days) and `w` (weeks). If you specify a unit twice (e.g. `10s5s`), the first one will be omitted. Default to seconds if no unit is specified. The Text is optional."
+Starts a timer. Use `s` (seconds), `m` (minutes), `h` (hours), `d` (days) and `w` (weeks). If you specify a unit twice (e.g. `10s5s`), the last one will be used and the others will be omitted. Default to seconds if no unit is specified. The Text is optional."
 
-**terminate [Timer ID]** Properly terminates a running timer generated by `rtime`. The Timer ID is a random 5-alphabet code and can be found at the beginning of a timer.
-
-**timer [Seconds] {Text}** Starts a timer. The Text is optional. **Alert: This command is outdated. Consider using** `rtimer` **instead.**
+**terminate [Timer ID]** Properly terminates a running timer generated by `rtime`. The Timer ID is a random 5-alphabet code that can be found at the beginning of a timer.
 
 ### Web and Developer
 
