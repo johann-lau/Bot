@@ -193,7 +193,6 @@ If you participate in any of the following activities, you will be banned from u
 
 - Illegal activities
 - Hosting cloud services, e.g. other Discord bots
-- Phishing
 - Attempt to bypass any rule, ToS or Community Guidelines
 
 ### Math help
@@ -211,25 +210,25 @@ Random | ra
 
 Use `+`, `-`, `*`, `/`, `×`, `÷`, `^`, `**` to do basic arithmetic. (`**` is equal to `^`)
 
-`float()` explicitly makes the result a float number, i.e. a number with a decimal point.
+`float()` explicitly makes the result a float number, i.e. a number with a decimal point. E.g. `float(5)` will return `5.0`.
 
-`floor()` and `ceil()` rounds the number down/up to the closest integer
+`floor()` and `ceil()` rounds the number down/up to the closest integer. E.g. `floor(5.9)` will return `5` and `ceil(5.1)` will return `6`.
 
-`round()` rounds the number to the closest integer.
+`round()` rounds the number to the closest integer. E.g. `round(5.5)` will return `6`.
 
 #### Scientific Math
-Function | Usage
-:---:|:---:
-`mod` or `%` | [Modulus](https://en.wikipedia.org/wiki/Modulo_operation)
-`factorial()` | [Factorial](https://en.wikipedia.org/wiki/Factorial) e.g. factorial(5)=5×4×3×2×1
-`sqrt()` or `√()` | [Square root](https://en.wikipedia.org/wiki/Square_root)
-`sin()` `cos()` `tan()` | [Trigonometry](https://en.wikipedia.org/wiki/Trigonometry)
-`asin()` `acos()` `atan()` | [Inverse trigonometry](https://en.wikipedia.org/wiki/Inverse_trigonometric_functions)
-`gcd()` or `hcf()` \*| [Greatest common divisor](https://en.wikipedia.org/wiki/Greatest_common_divisor)
-`lcm()` \*| [Least common multiple](https://en.wikipedia.org/wiki/Least_common_multiple)
-`exp()` | [Exponential](https://en.wikipedia.org/wiki/Exponential_function)
-`log(x, base)` | [Logarithm](https://en.wikipedia.org/wiki/Logarithm) base is optional, default to 10
-`degrees()` `radians()` | Converts between degrees and radians
+Function | Usage | Example
+:---:|:---:|:---:
+`mod` or `%` | [Modulus](https://en.wikipedia.org/wiki/Modulo_operation) | `128%10`=8
+`factorial()` | [Factorial](https://en.wikipedia.org/wiki/Factorial) | `factorial(5)`=5×4×3×2×1
+`sqrt()` or `√()` | [Square root](https://en.wikipedia.org/wiki/Square_root) | `sqrt(144)`=12
+`sin()` `cos()` `tan()` | [Trigonometry](https://en.wikipedia.org/wiki/Trigonometry) | -
+`asin()` `acos()` `atan()` | [Inverse trigonometry](https://en.wikipedia.org/wiki/Inverse_trigonometric_functions) | -
+`gcd()` or `hcf()` \*| [Greatest common divisor](https://en.wikipedia.org/wiki/Greatest_common_divisor) | `gcd(10, 8)`=40
+`lcm()` \*| [Least common multiple](https://en.wikipedia.org/wiki/Least_common_multiple) | `lcm(28, 35)`=7
+`exp()` | [Exponential](https://en.wikipedia.org/wiki/Exponential_function) | -
+`log(x, base)` | [Logarithm](https://en.wikipedia.org/wiki/Logarithm) (The base is optional, default to 10) | -
+`degrees()` `radians()` | Converts between degrees and radians | -
 
 \* You can have as many arguments as you want in the parenthesis.
 
