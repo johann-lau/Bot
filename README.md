@@ -34,7 +34,7 @@ Support hosting fees by [watching an ad](http://evolterr.com/1aza) or directly [
 
 **voicechannel [Voice Channel Name or ID]** Shows information about the voice Channel.
 
-**voicechannel [(Voice) Channel Name or ID]** Shows information about the text or voice Channel.
+**autochannel [(Voice) Channel Name or ID]** Shows information about the text or voice Channel.
 
 **user {User Name, Nickname, ID or Mention} {Channel Name, ID or Mention}** Shows information about the user. Specify the channel to show the permissions accurately.
 
