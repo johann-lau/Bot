@@ -4,7 +4,7 @@
 
 SuperBot is a non-profit Discord bot. The purpose of creating the bot is to literally provide service to users. There are no premium plans, forced advertising or command cooldown. Computer resources are limited, please do not spam commands to allow others to access commands quickly.
 
-Support hosting fees by [watching an ad](http://evolterr.com/1aza) or directly [support me on Patreon](https://www.patreon.com/user?u=48151089&fan_landing=true).
+Support hosting by [watching an ad](http://evolterr.com/1aza) or directly [support me on Patreon](https://www.patreon.com/user?u=48151089&fan_landing=true).
 
 ## Commands
 
@@ -105,7 +105,7 @@ Please check [here](https://github.com/johann-lau/Bot#embed-message-help) for mo
 
 **ban [User Name, Nickname, ID or Mention] {Reason}** Bans the user.
 
-**ban [User ID] {Reason}** Unbans the user.
+**unban [User ID] {Reason}** Unbans the user.
 
 **slowmode [Delay] {Channel mentions}** Sets the slowmode to the delay. If there are no channel mentions, it will set the slowmode of the current channel.
 
