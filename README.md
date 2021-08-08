@@ -125,7 +125,11 @@ Please check [here](https://github.com/johann-lau/Bot#embed-message-help) for mo
 
 ### Information
 
-**colo(u)r [3 RGB values, 1 hex code or 1 decimal value]** Convert between colour formats. If you want to explicitly specify a hex code instead of a decimal value, add a hash `#` before the value. E.g. `=color 255 0 0`, `=color #ff0000` or `=color 16711680`
+**qr [Upload an image]** Very limited QR code scanner.
+
+**qrmake [Text] {Foreground HEX} {Background HEX} {Image size} {Border size} {Correction}** Generates a QR code. Please check [https://github.com/johann-lau/Bot/blob/main/README.md#qrmake-help] for more information.
+
+**colo(u)r [3 RGB values/1 hex code/1 decimal value]** Convert between colour formats. If you want to explicitly specify a hex code instead of a decimal value, add a hash `#` before the value. E.g. `=color 255 0 0`, `=color #ff0000` or `=color 16711680`
 
 **simp(le)colo(u)r [Name of color/gradient]** View beautiful colours or gradients.
 
@@ -269,6 +273,22 @@ There are certain character limits:
 - The footer text is limited to 2048 characters
 - The author name is limited to 256 characters
 - The entire embed is limited to 6000 characters
+
+### QRMake Help
+
+SuperBot provides an advanced command to generate Quick-Response codes: `qrmake [Text] {Foreground HEX} {Background HEX} {Image size} {Border size} {Correction}`
+
+**Text**: Content to generate a code. Use `{{{newline}}}` to separate lines.
+
+**Foreground HEX**: Hex colo(u)r code for the bits (dots). Default is black.
+
+**Background HEX**: Hex colo(u)r code for the background. Default is white.
+
+**Image size **: Size of the image file, divided by 30. **Does not** affect the number of bits (dots). Measured in pixels.
+
+**Border size**: Amount of space left around the QR code. Measured in bits (dots).
+
+**Correction**: A value between 1 and 4. The higher it is, the better it can "recover" itself after parts of it had been damaged. Try scanning [this](https://commons.wikimedia.org/wiki/File:QR_Code_Damaged.jpg) for details. Default to 1.
 
 ### Python Help
 
