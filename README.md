@@ -1,5 +1,9 @@
 # Bot Documentation
 
+# ARCHIVED
+
+This documentation page is outdated (and ugly). Please use [the new one](https://superbot-discord.github.io) instead.
+
 ## General description
 
 SuperBot is a non-profit Discord bot. The purpose of creating the bot is to literally provide service to users. There are no premium plans, forced advertising or command cooldown. Computer resources are limited, please do not spam commands to allow others to access commands quickly.
